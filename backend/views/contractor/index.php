@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+use yii\helpers\ArrayHelper;
+use backend\models\ContractorGroup;
+
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\ContractorSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -30,12 +33,33 @@ $this->params['breadcrumbs'][] = $this->title;
             'firstname',
             'lastname',
             'phone',
-            'contractor_group_id',
+            [
+              'attribute' => 'contractor_group_id',
+              'value' => function($model) {
+                  return $model->group->name;
+              },
+              'filter' => ArrayHelper::map(ContractorGroup::find()->all(), 'id', 'name')
+          ],
             // 'status',
             'created_at:date',
             // 'updated_at',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '<div style="width: 80px">{view}{update}</div>',
+                'buttons' => [
+                    'view' => function ($url,$model) {
+                        return Html::a(
+                                '<span title="Добавить купон" class="btn btn-warning btn-sm"><i class="fa fa-ticket"></i></span> ',
+                            $url);
+                    },
+                    'update' => function ($url,$model) {
+                        return Html::a(
+                                '<span title="Редактировать запись" class="btn btn-primary btn-sm"><i class="fa fa-gear"></i></span>',
+                            $url);
+                    },
+                ],
+            ],
         ],
     ]); ?>
 

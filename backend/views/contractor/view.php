@@ -19,35 +19,35 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="row">
         <div class="col-md-7">
-            <div class="box box-danger">
+            <div class="box box-success">
               <div class="box-header with-border">
                 <h3 class="box-title">Купоны контрагента</h3>
               </div><!-- /.box-header -->
               <div class="box-body">
                   <?php echo GridView::widget([
                       'dataProvider' => $couponPack,
+                      'summary'=>"",
                       'columns' => [
-                          ['class' => 'yii\grid\SerialColumn'],
                           'number_from',
                           'number_to',
                           'used_count',
-                          ['class' => 'yii\grid\ActionColumn'],
                       ],
                   ]); ?>
               </div><!-- /.box-body -->
-              <div class="box-footer">
-                  <p class="pull-right">
-                  <?= Html::button('Add', [
-                        'class' => 'btn btn-success btn-ajax-modal',
-                        'data-target' => Url::to('/contractor/create'),
-                    ]); ?>
-                 </p>
+                <div class="box-footer">
+                    <p class="pull-right">
+                        <?= Html::button('<i class="fa fa-plus-square fa-lg"></i>', [
+                            'class' => 'btn btn-success btn btn-ajax-modal',
+                            'title' => 'Добавить купоны',
+                            'data-target' => Url::to('/coupon-pack/create-modal?id=4'),
+                        ]); ?>
+                    </p>
               </div><!-- box-footer -->
             </div><!-- /.box -->
 
         </div>
         <div class="col-md-5">
-            <div class="box box-success">
+            <div class="box box-danger">
               <div class="box-header with-border">
                 <h3 class="box-title">Инфо</h3>
               </div><!-- /.box-header -->
@@ -77,20 +77,18 @@ $this->params['breadcrumbs'][] = $this->title;
             </div><!-- /.box -->
         </div>
     </div>
-
-    <?php
-       Modal::begin([
-           'id' => 'modal_category',
-           'header' => '<h4>Category</h4>',
-       ]);
-       echo '<div class="modal-content"></div>';
-       Modal::end();
-    ?>
-
-
-
-
 </div>
+
+<?php
+   Modal::begin([
+       'header' => '<h4 class="model-title">Добавить купоны</h4>',
+       'headerOptions' => ['class' => 'modal-header'],
+       'id' => 'modal',
+       'size' => 'modal-md',
+   ]);
+   echo '<div class="modal-content modal-body">Loading...</div>';
+   Modal::end();
+?>
 
 
 <?php
@@ -98,9 +96,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $script = <<< JS
     $('.btn-ajax-modal').on('click', function() {
-       $('#modal_category').modal('show')
-           .find('.modal-content')
+       $('#modal').modal('show')
+           .find('.modal-body')
            .load($(this).attr('data-target'));
+           document.getElementById('modalHeader').innerHTML = '<h4>' + $(this).attr('title') + '</h4>';
     });
 JS;
 //маркер конца строки, обязательно сразу, без пробелов и табуляции

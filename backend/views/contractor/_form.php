@@ -12,7 +12,7 @@ use kartik\select2\Select2;
 <div class="contractor-form">
 
     <?php $form = ActiveForm::begin([
-        'id' => 'tour',
+        'id' => 'contractor-form',
         'layout' => 'horizontal',
         'fieldConfig' => [
             'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
@@ -46,7 +46,7 @@ use kartik\select2\Select2;
     <div class="form-group" style="margin-top: -15px;">
         <div class="col-sm-10 col-sm-offset-2">
             <div class="">
-                <input type="button" class="btn btn-default" value="Создать новую группу"/>
+                <input type="button" class="btn btn-default" value="Добавить группу"/>
             </div>
         </div>
     </div>

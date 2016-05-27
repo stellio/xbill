@@ -33,9 +33,10 @@ class CouponPack extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['contractor_id', 'used_count', 'created_at', 'updated_at'], 'integer'],
-            [['number_from', 'number_to'], 'string', 'max' => 255],
+            [['number_from', 'number_to'], 'required'],
+            [['contractor_id', 'used_count', 'created_at', 'updated_at', 'number_from', 'number_to'], 'integer'],
             [['contractor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Contractor::className(), 'targetAttribute' => ['contractor_id' => 'id']],
+            ['used_count', 'default', 'value' => 0],
         ];
     }
 
@@ -46,12 +47,12 @@ class CouponPack extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'contractor_id' => Yii::t('backend', 'Contractor ID'),
+            'contractor_id' => Yii::t('backend', 'Contractor'),
             'number_from' => Yii::t('backend', 'Number From'),
             'number_to' => Yii::t('backend', 'Number To'),
-            'used_count' => Yii::t('backend', 'Used Count'),
-            'created_at' => Yii::t('backend', 'Created At'),
-            'updated_at' => Yii::t('backend', 'Updated At'),
+            'used_count' => Yii::t('backend', 'Sold'),
+            'created_at' => Yii::t('common', 'Created At'),
+            'updated_at' => Yii::t('common', 'Updated At'),
         ];
     }
 

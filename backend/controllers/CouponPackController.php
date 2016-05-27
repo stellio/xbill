@@ -71,6 +71,20 @@ class CouponPackController extends Controller
         }
     }
 
+    public function actionCreateModal($id)
+    {
+        $model = new CouponPack();
+        $model->contractor_id = $id;
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        } else {
+            return $this->renderAjax('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
     /**
      * Updates an existing CouponPack model.
      * If update is successful, the browser will be redirected to the 'view' page.

@@ -21,6 +21,7 @@ return [
     'Other' => '',
     'This email has already been taken.' => '',
     'Account' => 'Аккаунт',
+    'Add' => 'Добавить',
     'Add {modelClass}' => 'Добавить {modelClass}',
     'Application' => 'Приложение',
     'Application settings' => 'Настройки приложения',
@@ -176,4 +177,9 @@ return [
     'Coupon Packs' => 'Пачки купонов',
     'Report' => 'Отчет',
     'Notices' => 'Уведомления',
+
+    /* Coupon Packs */
+    'Sold' => 'Продано',
+    'Number From' => 'Начальный номер',
+    'Number To' => 'Завершающий номер',
 ];
