@@ -21,6 +21,7 @@ return [
     'Other' => '',
     'This email has already been taken.' => '',
     'Account' => 'Аккаунт',
+    'Add {modelClass}' => 'Добавить {modelClass}',
     'Application' => 'Приложение',
     'Application settings' => 'Настройки приложения',
     'Application timeline' => 'Хроника приложения',
@@ -164,4 +165,15 @@ return [
     'i18n' => 'I18N',
     'i18n Message' => 'Перевод',
     'i18n Source Message' => 'Текст',
+
+    /* Contractors */
+    'Contractors' => 'Контрагенты',
+    'Contractors' => 'Контрагенты',
+    'Contractor' => 'Контрагент',
+    'Contractors Groups' => 'Группы Контрагентов',
+    'Group' => 'Группа',
+    'Groups' => 'Группы',
+    'Coupon Packs' => 'Пачки купонов',
+    'Report' => 'Отчет',
+    'Notices' => 'Уведомления',
 ];

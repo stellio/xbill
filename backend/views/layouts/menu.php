@@ -1,0 +1,56 @@
+<?php
+
+use backend\widgets\Menu;
+use common\models\TimelineEvent;
+
+ ?>
+
+ <?php echo Menu::widget([
+     'options'=>['class'=>'sidebar-menu'],
+     'linkTemplate' => '<a href="{url}">{icon}<span>{label}</span>{right-icon}{badge}</a>',
+     'submenuTemplate'=>"\n<ul class=\"treeview-menu\">\n{items}\n</ul>\n",
+     'activateParents' => true,
+     'items' => [
+         [
+             'label'=>Yii::t('backend', 'Главное меню'),
+             'options' => ['class' => 'header']
+         ],
+         [
+             'label' => Yii::t('backend', 'Contractors'),
+             'icon' => '<i class="fa fa-user-secret"></i>',
+             'url' => ['/contractor/index'],
+            //  'visible'=>Yii::$app->user->can('administrator')
+         ],
+         [
+             'label' => Yii::t('backend', 'Groups'),
+             'icon' => '<i class="fa fa-users"></i>',
+             'url' => ['/contractor-group/index'],
+            //  'visible'=>Yii::$app->user->can('administrator')
+         ],
+         [
+             'label' => Yii::t('backend', 'Coupon Packs'),
+             'icon' => '<i class="fa fa-ticket"></i>',
+             'url' => ['/coupon-pack/index'],
+            //  'visible'=>Yii::$app->user->can('administrator')
+         ],
+         [
+             'label' => Yii::t('backend', 'Report'),
+             'icon' => '<i class="fa fa-area-chart"></i>',
+             'url' => ['/contractor-group/index'],
+            //  'visible'=>Yii::$app->user->can('administrator')
+         ],
+         [
+             'label' => Yii::t('backend', 'Notices'),
+             'icon' => '<i class="fa fa-bullhorn"></i>',
+             'url' => ['/contractor-group/index'],
+            //  'visible'=>Yii::$app->user->can('administrator')
+         ],
+         [
+             'label' => Yii::t('backend', 'Users'),
+             'icon' => '<i class="fa fa-user"></i>',
+             'url' => ['/user/index'],
+             'visible' => Yii::$app->user->can('administrator')
+         ],
+
+     ]
+ ]) ?>

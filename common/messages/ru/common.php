@@ -59,6 +59,7 @@ return [
     'Parent Category' => 'Родительская категория',
     'Path' => 'Путь',
     'Picture' => 'Аватар',
+    'Phone' => 'Телефон',
     'Published' => 'Опубликовано',
     'Published At' => 'Дата публикации',
     'Size' => 'Размер',
