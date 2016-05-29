@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -13,6 +14,7 @@ use yii\bootstrap\ActiveForm;
     <?php $form = ActiveForm::begin([
         'id' => 'coupon-pack-form',
         'enableAjaxValidation' => true,
+        'validationUrl' => Url::to('/coupon-pack/validate'),
         'layout' => 'horizontal',
         'fieldConfig' => [
             'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",

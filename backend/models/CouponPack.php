@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "contractor_coupon_pack".
@@ -25,6 +26,14 @@ class CouponPack extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'contractor_coupon_pack';
+    }
+
+    
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className()
+        ];
     }
 
     /**

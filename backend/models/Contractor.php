@@ -31,11 +31,11 @@ class Contractor extends \yii\db\ActiveRecord
     }
 
     public function behaviors()
-   {
-       return [
-           TimestampBehavior::className()
-       ];
-   }
+    {
+        return [
+            TimestampBehavior::className()
+        ];
+    }
 
     /**
      * @inheritdoc
