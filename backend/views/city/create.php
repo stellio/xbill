@@ -4,19 +4,18 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\CouponPack */
+/* @var $model backend\models\City */
 
 $this->title = Yii::t('backend', 'Create {modelClass}', [
-    'modelClass' => 'Coupon Pack',
+    'modelClass' => 'City',
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Coupon Packs'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Cities'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="coupon-pack-create">
+<div class="city-create">
 
     <?php echo $this->render('_form', [
         'model' => $model,
-        'types' => $types,
     ]) ?>
 
 </div>

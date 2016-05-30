@@ -22,7 +22,13 @@ use common\models\TimelineEvent;
             //  'visible'=>Yii::$app->user->can('administrator')
          ],
          [
-             'label' => Yii::t('backend', 'Groups'),
+             'label' => Yii::t('backend', 'Cities'),
+             'icon' => '<i class="fa fa-university"></i>',
+             'url' => ['/city/index'],
+            //  'visible'=>Yii::$app->user->can('administrator')
+         ],
+         [
+             'label' => Yii::t('backend', 'Agents Groups'),
              'icon' => '<i class="fa fa-users"></i>',
              'url' => ['/contractor-group/index'],
             //  'visible'=>Yii::$app->user->can('administrator')
@@ -31,6 +37,18 @@ use common\models\TimelineEvent;
              'label' => Yii::t('backend', 'Coupon Packs'),
              'icon' => '<i class="fa fa-ticket"></i>',
              'url' => ['/coupon-pack/index'],
+            //  'visible'=>Yii::$app->user->can('administrator')
+         ],
+         [
+             'label' => Yii::t('backend', 'Coupon Types'),
+             'icon' => '<i class="fa fa-clone"></i>',
+             'url' => ['/coupon-type/index'],
+            //  'visible'=>Yii::$app->user->can('administrator')
+         ],
+         [
+             'label' => Yii::t('backend', 'Coupon Accounting'),
+             'icon' => '<i class="fa fa-file-text"></i>',
+             'url' => ['/coupon-accounting/index'],
             //  'visible'=>Yii::$app->user->can('administrator')
          ],
          [

@@ -3,7 +3,6 @@
 namespace backend\models;
 
 use Yii;
-use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "contractor".
@@ -16,9 +15,15 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
+ * @property string $middlename
+ * @property string $note
+ * @property string $name
+ * @property string $address
+ * @property integer $city_id
  *
- * @property Group $group
- * @property CouponPack[] $couponPacks
+ * @property City $city
+ * @property ContractorGroup $contractorGroup
+ * @property ContractorCouponPack[] $contractorCouponPacks
  */
 class Contractor extends \yii\db\ActiveRecord
 {
@@ -30,25 +35,19 @@ class Contractor extends \yii\db\ActiveRecord
         return 'contractor';
     }
 
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::className()
-        ];
-    }
-
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['firstname', 'lastname', 'phone'], 'required'],
-            [['contractor_group_id', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['lastname', 'phone'], 'required'],
+            [['contractor_group_id', 'status', 'created_at', 'updated_at', 'city_id'], 'integer'],
             [['firstname', 'lastname'], 'string', 'max' => 32],
             [['phone'], 'string', 'max' => 40],
+            [['middlename', 'note', 'name', 'address'], 'string', 'max' => 255],
+            [['city_id'], 'exist', 'skipOnError' => true, 'targetClass' => City::className(), 'targetAttribute' => ['city_id' => 'id']],
             [['contractor_group_id'], 'exist', 'skipOnError' => true, 'targetClass' => ContractorGroup::className(), 'targetAttribute' => ['contractor_group_id' => 'id']],
-            ['status', 'default', 'value' => 0],
         ];
     }
 
@@ -59,14 +58,27 @@ class Contractor extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'firstname' => Yii::t('common', 'Firstname'),
-            'lastname' => Yii::t('common', 'Lastname'),
-            'phone' => Yii::t('common', 'Phone'),
-            'contractor_group_id' => Yii::t('backend', 'Group'),
-            'status' => Yii::t('common', 'Status'),
-            'created_at' => Yii::t('common', 'Created At'),
-            'updated_at' => Yii::t('common', 'Updated At'),
+            'firstname' => Yii::t('backend', 'Firstname'),
+            'lastname' => Yii::t('backend', 'Lastname'),
+            'phone' => Yii::t('backend', 'Phone'),
+            'contractor_group_id' => Yii::t('backend', 'Contractor Group ID'),
+            'status' => Yii::t('backend', 'Status'),
+            'created_at' => Yii::t('backend', 'Created At'),
+            'updated_at' => Yii::t('backend', 'Updated At'),
+            'middlename' => Yii::t('backend', 'Middlename'),
+            'note' => Yii::t('backend', 'Note'),
+            'name' => Yii::t('backend', 'Name'),
+            'address' => Yii::t('backend', 'Address'),
+            'city_id' => Yii::t('backend', 'City ID'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCity()
+    {
+        return $this->hasOne(City::className(), ['id' => 'city_id']);
     }
 
     /**
@@ -80,7 +92,7 @@ class Contractor extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCouponPacks()
+    public function getContractorCouponPacks()
     {
         return $this->hasMany(ContractorCouponPack::className(), ['contractor_id' => 'id']);
     }

@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 
@@ -31,6 +32,12 @@ use yii\bootstrap\ActiveForm;
     <?php echo $form->errorSummary($model); ?>
 
     <?php echo $form->field($model, 'contractor_id')->hiddenInput()->label(false); ?>
+
+    <?php echo $form->field($model, 'type_id')->dropDownList(ArrayHelper::map(
+                       $types,
+                       'id',
+                       'name'
+                   ), ['prompt'=>''])?>
 
     <?php echo $form->field($model, 'number_from')->textInput(['maxlength' => true]) ?>
 

@@ -3,19 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\CouponPack;
-use backend\models\CouponType;
-use backend\models\search\CouponPackSearch;
-use yii\web\Response;
+use backend\models\City;
+use backend\models\search\CitySearch;
 use yii\web\Controller;
-use yii\bootstrap\ActiveForm;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CouponPackController implements the CRUD actions for CouponPack model.
+ * CityController implements the CRUD actions for City model.
  */
-class CouponPackController extends Controller
+class CityController extends Controller
 {
     public function behaviors()
     {
@@ -30,12 +27,12 @@ class CouponPackController extends Controller
     }
 
     /**
-     * Lists all CouponPack models.
+     * Lists all City models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CouponPackSearch();
+        $searchModel = new CitySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +42,7 @@ class CouponPackController extends Controller
     }
 
     /**
-     * Displays a single CouponPack model.
+     * Displays a single City model.
      * @param integer $id
      * @return mixed
      */
@@ -57,52 +54,25 @@ class CouponPackController extends Controller
     }
 
     /**
-     * Creates a new CouponPack model.
+     * Creates a new City model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new CouponPack();
+        $model = new City();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'types' => CouponType::find()->all(),
             ]);
         }
     }
 
-    public function actionCreateModal($id)
-    {
-        $model = new CouponPack();
-        $model->contractor_id = $id;
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['/contractor/view', 'id' => $model->contractor_id]);
-        }
-        $model->contractor_id = $id;
-        return $this->renderAjax('create', [
-            'model' => $model,
-            'types' => CouponType::find()->all(),
-        ]);
-
-    }
-
-    public function actionValidate()
-    {
-        $model = new CouponPack();
-
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            \Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-    }
-
     /**
-     * Updates an existing CouponPack model.
+     * Updates an existing City model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -121,7 +91,7 @@ class CouponPackController extends Controller
     }
 
     /**
-     * Deletes an existing CouponPack model.
+     * Deletes an existing City model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -134,15 +104,15 @@ class CouponPackController extends Controller
     }
 
     /**
-     * Finds the CouponPack model based on its primary key value.
+     * Finds the City model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return CouponPack the loaded model
+     * @return City the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = CouponPack::findOne($id)) !== null) {
+        if (($model = City::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

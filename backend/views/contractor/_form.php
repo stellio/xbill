@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\bootstrap\ActiveForm;
 
 use kartik\select2\Select2;
@@ -40,23 +41,36 @@ use kartik\select2\Select2;
         'pluginOptions' => [
             'allowClear' => true
         ],
-    ])->hint('Если нет необходимой группы, создайте ее не отходя от кассы ;)') ?>
+    ])->hint('Нет необходимой группы?') ?>
 
 
     <div class="form-group" style="margin-top: -15px;">
         <div class="col-sm-10 col-sm-offset-2">
             <div class="">
-                <input type="button" class="btn btn-default" value="Добавить группу"/>
+                <a href="/contractor-group/create" class="btn btn-default">Добавить группу</a>
             </div>
         </div>
     </div>
 
+    <?php echo $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?php echo $form->field($model, 'firstname')->textInput(['maxlength' => true]) ?>
 
     <?php echo $form->field($model, 'lastname')->textInput(['maxlength' => true]) ?>
 
+    <?php echo $form->field($model, 'middlename')->textInput(['maxlength' => true]) ?>
+
     <?php echo $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+
+    <?php echo $form->field($model, 'city_id')->dropDownList(ArrayHelper::map(
+                       $cities,
+                       'id',
+                       'name'
+                   ), ['prompt'=>''])?>
+
+    <?php echo $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
+
+    <?php echo $form->field($model, 'note')->textArea(['maxlength' => true]) ?>
 
     <div class="form-group">
         <div class="col-sm-12">

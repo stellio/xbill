@@ -175,6 +175,7 @@ return [
     'Group' => 'Группа',
     'Groups' => 'Группы',
     'Coupon Packs' => 'Пачки купонов',
+    'Coupon Accounting' => 'Учет купонов',
     'Report' => 'Отчет',
     'Notices' => 'Уведомления',
 

@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
+use backend\models\City;
 use backend\models\Contractor;
 use backend\models\CouponPack;
 use backend\models\ContractorGroup;
@@ -80,6 +81,7 @@ class ContractorController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'cities' => City::find()->all(),
                 'group' => ContractorGroup::find()->all(),
             ]);
         }
@@ -100,6 +102,7 @@ class ContractorController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'cities' => City::find()->all(),
                 'group' => ContractorGroup::find()->all(),
             ]);
         }

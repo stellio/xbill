@@ -4,19 +4,26 @@ namespace backend\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "contractor_coupon_pack".
  *
  * @property integer $id
  * @property integer $contractor_id
- * @property string $number_from
- * @property string $number_to
- * @property integer $used_count
  * @property integer $created_at
  * @property integer $updated_at
+ * @property integer $number_from
+ * @property integer $number_to
+ * @property integer $sold_total
+ * @property integer $trip_total
+ * @property integer $status
+ * @property integer $type_id
+ * @property integer $issued_at
  *
  * @property Contractor $contractor
+ * @property CouponType $type
+ * @property CouponSold[] $couponSolds
  */
 class CouponPack extends \yii\db\ActiveRecord
 {
@@ -28,11 +35,15 @@ class CouponPack extends \yii\db\ActiveRecord
         return 'contractor_coupon_pack';
     }
 
-    
     public function behaviors()
     {
         return [
-            TimestampBehavior::className()
+            TimestampBehavior::className(),
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'issued_at',
+                'value' => new Expression('UNIX_TIMESTAMP(CURDATE())'),
+            ]
         ];
     }
 
@@ -42,10 +53,9 @@ class CouponPack extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['number_from', 'number_to'], 'required'],
-            [['contractor_id', 'used_count', 'created_at', 'updated_at', 'number_from', 'number_to'], 'integer'],
+            [['contractor_id', 'created_at', 'updated_at', 'number_from', 'number_to', 'sold_total', 'trip_total', 'status', 'type_id', 'issued_at'], 'integer'],
             [['contractor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Contractor::className(), 'targetAttribute' => ['contractor_id' => 'id']],
-            ['used_count', 'default', 'value' => 0],
+            [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => CouponType::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];
     }
 
@@ -56,12 +66,16 @@ class CouponPack extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'contractor_id' => Yii::t('backend', 'Contractor'),
-            'number_from' => Yii::t('backend', 'Number From'),
-            'number_to' => Yii::t('backend', 'Number To'),
-            'used_count' => Yii::t('backend', 'Sold'),
+            'contractor_id' => Yii::t('backend', 'Contractor ID'),
             'created_at' => Yii::t('common', 'Created At'),
             'updated_at' => Yii::t('common', 'Updated At'),
+            'number_from' => Yii::t('backend', 'Number From'),
+            'number_to' => Yii::t('backend', 'Number To'),
+            'sold_total' => Yii::t('backend', 'Sold Total'),
+            'trip_total' => Yii::t('backend', 'Trip Total'),
+            'status' => Yii::t('backend', 'Status'),
+            'type_id' => Yii::t('backend', 'Type ID'),
+            'issued_at' => Yii::t('backend', 'Issued At'),
         ];
     }
 
@@ -71,5 +85,21 @@ class CouponPack extends \yii\db\ActiveRecord
     public function getContractor()
     {
         return $this->hasOne(Contractor::className(), ['id' => 'contractor_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getType()
+    {
+        return $this->hasOne(CouponType::className(), ['id' => 'type_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCouponSolds()
+    {
+        return $this->hasMany(CouponSold::className(), ['coupon_pack_id' => 'id']);
     }
 }

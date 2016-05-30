@@ -40,7 +40,14 @@ $this->params['breadcrumbs'][] = $this->title;
                       'columns' => [
                           'number_from',
                           'number_to',
-                          'used_count',
+                          'sold_total',
+                          'trip_total',
+                          [
+                              'attribute' => 'type_id',
+                              'value' => function($model) {
+                                  return ($model->type) ? $model->type->name : '';
+                              }
+                          ],
                           'created_at:date',
                           'updated_at:date',
                       ],
