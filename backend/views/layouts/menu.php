@@ -19,49 +19,49 @@ use common\models\TimelineEvent;
              'label' => Yii::t('backend', 'Contractors'),
              'icon' => '<i class="fa fa-user-secret"></i>',
              'url' => ['/contractor/index'],
-            //  'visible'=>Yii::$app->user->can('administrator')
+             'visible'=>Yii::$app->user->can('administrator')
          ],
          [
              'label' => Yii::t('backend', 'Cities'),
              'icon' => '<i class="fa fa-university"></i>',
              'url' => ['/city/index'],
-            //  'visible'=>Yii::$app->user->can('administrator')
+             'visible'=>Yii::$app->user->can('administrator')
          ],
          [
              'label' => Yii::t('backend', 'Agents Groups'),
              'icon' => '<i class="fa fa-users"></i>',
              'url' => ['/contractor-group/index'],
-            //  'visible'=>Yii::$app->user->can('administrator')
+             'visible'=>Yii::$app->user->can('administrator')
          ],
          [
              'label' => Yii::t('backend', 'Coupon Packs'),
              'icon' => '<i class="fa fa-ticket"></i>',
              'url' => ['/coupon-pack/index'],
-            //  'visible'=>Yii::$app->user->can('administrator')
+             'visible'=>Yii::$app->user->can('administrator')
          ],
          [
              'label' => Yii::t('backend', 'Coupon Types'),
              'icon' => '<i class="fa fa-clone"></i>',
              'url' => ['/coupon-type/index'],
-            //  'visible'=>Yii::$app->user->can('administrator')
+             'visible'=>Yii::$app->user->can('administrator'),
          ],
          [
              'label' => Yii::t('backend', 'Coupon Accounting'),
              'icon' => '<i class="fa fa-file-text"></i>',
              'url' => ['/coupon-accounting/index'],
-            //  'visible'=>Yii::$app->user->can('administrator')
+             'visible'=> (Yii::$app->user->can('administrator') || Yii::$app->user->can('paymaster')),
          ],
          [
              'label' => Yii::t('backend', 'Отчеты'),
              'icon' => '<i class="fa fa-area-chart"></i>',
              'url' => ['/report/index'],
-            //  'visible'=>Yii::$app->user->can('administrator')
+             'visible'=>Yii::$app->user->can('administrator')
          ],
          [
              'label' => Yii::t('backend', 'Notices'),
              'icon' => '<i class="fa fa-bullhorn"></i>',
              'url' => ['/contractor-group/index'],
-            //  'visible'=>Yii::$app->user->can('administrator')
+             'visible'=>Yii::$app->user->can('administrator')
          ],
          [
              'label' => Yii::t('backend', 'Users'),

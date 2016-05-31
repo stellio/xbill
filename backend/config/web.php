@@ -2,7 +2,7 @@
 $config = [
     'homeUrl'=>Yii::getAlias('@backendUrl'),
     'controllerNamespace' => 'backend\controllers',
-    'defaultRoute'=>'timeline-event/index',
+    'defaultRoute'=>'coupon-accounting/index',
     'controllerMap'=>[
         'file-manager-elfinder' => [
             'class' => 'mihaildev\elfinder\Controller',
@@ -80,6 +80,10 @@ $config = [
             [
                 'allow' => true,
                 'roles' => ['manager'],
+            ],
+            [
+                'allow' => true,
+                'roles' => ['paymaster'],
             ]
         ]
     ]

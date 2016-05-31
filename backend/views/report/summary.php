@@ -150,13 +150,13 @@ $this->params['breadcrumbs'][] = $this->title;
               [
                   'attribute' => 'sold_total',
                   'label' => 'Продано',
-                  'format' => ['decimal', 2],
+                  'format' => ['decimal', 0],
                   'pageSummary' => true,
               ],
               [
                   'attribute' => 'trip_total',
                   'label' => 'Ходок',
-                  'format' => ['decimal', 2],
+                  'format' => ['decimal', 0],
                   'pageSummary' => true,
               ],
 
