@@ -26,7 +26,7 @@ use backend\models\Contractor;
  * @property CouponType $type
  * @property CouponSold[] $couponSolds
  */
-class CouponPack extends \yii\db\ActiveRecord
+class CouponPackExtended extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -75,7 +75,16 @@ class CouponPack extends \yii\db\ActiveRecord
             'sold_total' => Yii::t('backend', 'Sold Total'),
             'trip_total' => Yii::t('backend', 'Trip Total'),
             'status' => Yii::t('backend', 'Status'),
-            'type_id' => Yii::t('backend', 'Type ID'),
+            'type_id' => Yii::t('backend', 'Тип купона'),
+            'issued_at' => Yii::t('backend', 'Issued At'),
+            'group' => Yii::t('backend', 'Group'),
+            'name' => Yii::t('common', 'Name'),
+            'lastname' => Yii::t('common', 'Lastname'),
+            'firstname' => Yii::t('common', 'Firstname'),
+            'middlename' => Yii::t('common', 'Middlename'),
+            'phone' => Yii::t('common', 'Phone'),
+            'contractorCity' => Yii::t('common', 'City'),
+            'address' => Yii::t('common', 'Address'),
             'issued_at' => Yii::t('backend', 'Issued At'),
         ];
     }
@@ -96,17 +105,58 @@ class CouponPack extends \yii\db\ActiveRecord
         return $this->hasOne(CouponType::className(), ['id' => 'type_id']);
     }
 
-    public function getLastname() {
+    public function getName() {
+        $contractor = Contractor::find()->where(['id' => $this->contractor_id])->one();
+        return ($contractor) ? $contractor->name : '';
+    }
 
+    public function getLastname() {
         $contractor = Contractor::find()->where(['id' => $this->contractor_id])->one();
         return ($contractor) ? $contractor->lastname : '';
+    }
+
+    public function getFirstname() {
+        $contractor = Contractor::find()->where(['id' => $this->contractor_id])->one();
+        return ($contractor) ? $contractor->firstname : '';
+    }
+
+    public function getMiddlename() {
+        $contractor = Contractor::find()->where(['id' => $this->contractor_id])->one();
+        return ($contractor) ? $contractor->middlename : '';
+    }
+
+    public function getPhone() {
+        $contractor = Contractor::find()->where(['id' => $this->contractor_id])->one();
+        return ($contractor) ? $contractor->phone : '';
+    }
+
+    public function getContractorCity() {
+        $contractor = Contractor::find()->where(['id' => $this->contractor_id])->one();
+        return ($contractor) ? $contractor->city->name : '';
+    }
+
+    public function getAddress() {
+        $contractor = Contractor::find()->where(['id' => $this->contractor_id])->one();
+        return ($contractor) ? $contractor->address : '';
+    }
+
+    public function getGroup() {
+        $contractor = Contractor::find()->where(['id' => $this->contractor_id])->one();
+        return ($contractor) ? $contractor->group->name : '';
+    }
+
+    public function getContractorGroup() {
+        return $this->hasOne(ContractorGroup::className(), ['id' => 'id']);
+    }
+
+    public function getCity() {
+        return $this->hasOne(City::className(), ['id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCouponSolds()
-    {
+    public function getCouponSolds() {
         return $this->hasMany(CouponSold::className(), ['coupon_pack_id' => 'id']);
     }
 }

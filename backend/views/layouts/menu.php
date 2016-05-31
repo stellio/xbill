@@ -52,9 +52,9 @@ use common\models\TimelineEvent;
             //  'visible'=>Yii::$app->user->can('administrator')
          ],
          [
-             'label' => Yii::t('backend', 'Report'),
+             'label' => Yii::t('backend', 'Отчеты'),
              'icon' => '<i class="fa fa-area-chart"></i>',
-             'url' => ['/contractor-group/index'],
+             'url' => ['/report/index'],
             //  'visible'=>Yii::$app->user->can('administrator')
          ],
          [

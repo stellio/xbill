@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= Html::button('<i class="fa fa-plus-circle fa-lg"></i>', [
                         'class' => 'btn btn-success btn btn-ajax-modal',
                         'title' => 'Добавить купоны',
-                        'data-target' => Url::to('/coupon-pack/create-modal?id=4'),
+                        'data-target' => Url::to('/coupon-pack/create-modal?id=' . $model->id),
                     ]); ?>
                     <?= Html::a('<i class="fa fa-reply fa-lg"></i>',
                         Url::to('/contractor/index'), [

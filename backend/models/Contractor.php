@@ -92,8 +92,8 @@ class Contractor extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getContractorCouponPacks()
+    public function getCouponPacks()
     {
-        return $this->hasMany(ContractorCouponPack::className(), ['contractor_id' => 'id']);
+        return $this->hasMany(CouponPack::className(), ['contractor_id' => 'id']);
     }
 }

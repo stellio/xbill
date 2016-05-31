@@ -18,8 +18,7 @@ class CouponPackSearch extends CouponPack
     public function rules()
     {
         return [
-            [['id', 'contractor_id', 'used_count', 'created_at', 'updated_at'], 'integer'],
-            [['number_from', 'number_to'], 'safe'],
+            [['id', 'contractor_id', 'created_at', 'updated_at', 'number_from', 'number_to', 'sold_total', 'trip_total', 'status', 'type_id', 'issued_at'], 'integer'],
         ];
     }
 
@@ -54,13 +53,16 @@ class CouponPackSearch extends CouponPack
         $query->andFilterWhere([
             'id' => $this->id,
             'contractor_id' => $this->contractor_id,
-            'used_count' => $this->used_count,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'number_from' => $this->number_from,
+            'number_to' => $this->number_to,
+            'sold_total' => $this->sold_total,
+            'trip_total' => $this->trip_total,
+            'status' => $this->status,
+            'type_id' => $this->type_id,
+            'issued_at' => $this->issued_at,
         ]);
-
-        $query->andFilterWhere(['like', 'number_from', $this->number_from])
-            ->andFilterWhere(['like', 'number_to', $this->number_to]);
 
         return $dataProvider;
     }

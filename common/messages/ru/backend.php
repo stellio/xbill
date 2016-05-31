@@ -181,6 +181,7 @@ return [
 
     /* Coupon Packs */
     'Sold' => 'Продано',
+    'Issued At' => 'Выдан',
     'Number From' => 'Начальный номер',
     'Number To' => 'Завершающий номер',
 ];

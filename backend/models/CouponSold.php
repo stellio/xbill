@@ -4,6 +4,7 @@ namespace backend\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "coupon_sold".
@@ -34,7 +35,8 @@ class CouponSold extends \yii\db\ActiveRecord
         return [
             [
                 'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'issued_at',
+                'createdAtAttribute' => 'sold_at',
+                'updatedAtAttribute' => null,
                 'value' => new Expression('UNIX_TIMESTAMP(CURDATE())'),
             ]
         ];

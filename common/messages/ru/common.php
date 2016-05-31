@@ -18,6 +18,7 @@
  */
 return [
     'API access token' => '',
+    'Address' => 'Адрес',
     'Email' => '',
     'Expire At' => '',
     'Not Active' => '',
@@ -38,6 +39,7 @@ return [
     'Comment' => 'Комментарий',
     'Component' => 'Компонент',
     'Config' => 'Настройки',
+    'City' => 'Город',
     'Created At' => 'Создано',
     'Created at' => 'Создано',
     'Deleted' => 'Удалено',

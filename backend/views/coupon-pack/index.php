@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'contractor_id',
             'number_from',
             'number_to',
-            'used_count',
+            // 'used_count',
             // 'created_at',
             // 'updated_at',
 

@@ -3,6 +3,8 @@ namespace backend\models;
 
 use cheatsheet\Time;
 use common\models\User;
+use backend\CouponPack;
+use backend\CouponSold;
 use Yii;
 use yii\base\Exception;
 use yii\base\Model;
@@ -34,5 +36,10 @@ class AccountingCouponForm extends Model
         return [
             'numbers' => Yii::t('backend', 'Coupon Numbers')
         ];
+    }
+
+    public function enterNumbers() {
+
+        return false;
     }
 }

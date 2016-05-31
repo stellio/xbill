@@ -19,7 +19,7 @@ class ContractorSearch extends Contractor
     {
         return [
             [['id', 'contractor_group_id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['firstname', 'lastname', 'phone'], 'safe'],
+            [['firstname', 'lastname', 'middlename', 'phone'], 'safe'],
         ];
     }
 
