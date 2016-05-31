@@ -67,14 +67,14 @@ class CouponPack extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'contractor_id' => Yii::t('backend', 'Contractor ID'),
+            'contractor_id' => Yii::t('backend', 'Contractor'),
             'created_at' => Yii::t('common', 'Created At'),
             'updated_at' => Yii::t('common', 'Updated At'),
             'number_from' => Yii::t('backend', 'Number From'),
             'number_to' => Yii::t('backend', 'Number To'),
             'sold_total' => Yii::t('backend', 'Sold Total'),
             'trip_total' => Yii::t('backend', 'Trip Total'),
-            'status' => Yii::t('backend', 'Status'),
+            'status' => Yii::t('common', 'Status'),
             'type_id' => Yii::t('backend', 'Type ID'),
             'issued_at' => Yii::t('backend', 'Issued At'),
         ];

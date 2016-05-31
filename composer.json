@@ -50,7 +50,8 @@
     "symfony/process": "^3.0",
     "kartik-v/yii2-widget-select2": "@dev",
     "kartik-v/yii2-grid": "@dev",
-    "kartik-v/yii2-mpdf": "dev-master"
+    "kartik-v/yii2-mpdf": "dev-master",
+    "fgh151/yii2-epochta": "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "^2.0.0",

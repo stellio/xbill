@@ -95,6 +95,7 @@ return [
     'Menu Widgets' => 'Виджеты меню',
     'Message' => 'Сообщение',
     'More info' => 'Подробнее',
+    'Name' => 'Назвение',
     'Network' => 'Сеть',
     'New user ({identity}) was registered at {created_at}' => 'Новый пользователь ({identity}) был зарегистрирован {created_at}',
     'No events found' => 'Событий нет',
@@ -172,16 +173,30 @@ return [
     'Contractors' => 'Контрагенты',
     'Contractor' => 'Контрагент',
     'Contractors Groups' => 'Группы Контрагентов',
+    'Agents Groups' => 'Группы агентов',
     'Group' => 'Группа',
     'Groups' => 'Группы',
     'Coupon Packs' => 'Пачки купонов',
     'Coupon Accounting' => 'Учет купонов',
     'Report' => 'Отчет',
     'Notices' => 'Уведомления',
+    'Address' => 'Адрес',
+    'Note' => 'Примечание',
 
     /* Coupon Packs */
     'Sold' => 'Продано',
+    'Sold Total' => 'Продано',
+    'Trip Total' => 'Ходок',
+    'Type ID' => 'Тип',
     'Issued At' => 'Выдан',
     'Number From' => 'Начальный номер',
     'Number To' => 'Завершающий номер',
+
+    /* City */
+    'City' => 'Город',
+    'Cities' => 'Города',
+    'City ID' => 'Город',
+
+    /* Coupon Types */
+    'Coupon Types' => 'Типы купонов'
 ];

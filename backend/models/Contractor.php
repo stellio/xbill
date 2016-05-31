@@ -58,18 +58,18 @@ class Contractor extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'firstname' => Yii::t('backend', 'Firstname'),
-            'lastname' => Yii::t('backend', 'Lastname'),
-            'phone' => Yii::t('backend', 'Phone'),
-            'contractor_group_id' => Yii::t('backend', 'Contractor Group ID'),
+            'firstname' => Yii::t('common', 'Firstname'),
+            'lastname' => Yii::t('common', 'Lastname'),
+            'phone' => Yii::t('common', 'Phone'),
+            'contractor_group_id' => Yii::t('backend', 'Group'),
             'status' => Yii::t('backend', 'Status'),
-            'created_at' => Yii::t('backend', 'Created At'),
+            'created_at' => Yii::t('common', 'Created At'),
             'updated_at' => Yii::t('backend', 'Updated At'),
-            'middlename' => Yii::t('backend', 'Middlename'),
+            'middlename' => Yii::t('common', 'Middlename'),
             'note' => Yii::t('backend', 'Note'),
-            'name' => Yii::t('backend', 'Name'),
+            'name' => Yii::t('common', 'Name'),
             'address' => Yii::t('backend', 'Address'),
-            'city_id' => Yii::t('backend', 'City ID'),
+            'city_id' => Yii::t('backend', 'City'),
         ];
     }
 

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model backend\models\CouponType */
 
 $this->title = Yii::t('backend', 'Update {modelClass}: ', [
-    'modelClass' => 'Coupon Type',
+    'modelClass' => 'Тип купона',
 ]) . ' ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Coupon Types'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];

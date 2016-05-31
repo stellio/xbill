@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\CouponType */
 
-$this->title = Yii::t('backend', 'Create {modelClass}', [
-    'modelClass' => 'Coupon Type',
+$this->title = Yii::t('backend', 'Add {modelClass}', [
+    'modelClass' => 'Тип купона',
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Coupon Types'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;

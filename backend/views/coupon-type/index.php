@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?php echo Html::a(Yii::t('backend', 'Create {modelClass}', [
-    'modelClass' => 'Coupon Type',
+        <?php echo Html::a(Yii::t('backend', 'Add {modelClass}', [
+    'modelClass' => 'Новый тип',
 ]), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            // 'id',
             'name',
 
             ['class' => 'yii\grid\ActionColumn'],

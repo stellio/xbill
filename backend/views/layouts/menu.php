@@ -60,7 +60,7 @@ use common\models\TimelineEvent;
          [
              'label' => Yii::t('backend', 'Notices'),
              'icon' => '<i class="fa fa-bullhorn"></i>',
-             'url' => ['/contractor-group/index'],
+             'url' => ['/notice/index'],
              'visible'=>Yii::$app->user->can('administrator')
          ],
          [
