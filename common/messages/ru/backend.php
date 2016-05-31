@@ -184,6 +184,7 @@ return [
     'Note' => 'Примечание',
 
     /* Coupon Packs */
+    'Coupon Numbers' => 'Номера купонов',
     'Sold' => 'Продано',
     'Sold Total' => 'Продано',
     'Trip Total' => 'Ходок',
