@@ -33,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $model->contractor->lastname . ' ' . $model->contractor->firstname;
                 }
             ],
-            'contractor_id',
             'number_from',
             'number_to',
             // 'used_count',
