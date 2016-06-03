@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "notice_archive".
@@ -23,13 +24,21 @@ class NoticeArchive extends \yii\db\ActiveRecord
         return 'notice_archive';
     }
 
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['msg', 'status', 'created_at', 'updated_at'], 'integer'],
+            [['msg'], 'string', 'max' => 160],
+            [['status', 'created_at', 'updated_at'], 'integer'],
         ];
     }
 
@@ -40,9 +49,9 @@ class NoticeArchive extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'msg' => Yii::t('backend', 'Msg'),
-            'status' => Yii::t('backend', 'Status'),
-            'created_at' => Yii::t('backend', 'Created At'),
+            'msg' => Yii::t('backend', 'Message'),
+            'status' => Yii::t('common', 'Status'),
+            'created_at' => Yii::t('common', 'Created At'),
             'updated_at' => Yii::t('backend', 'Updated At'),
         ];
     }

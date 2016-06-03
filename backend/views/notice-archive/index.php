@@ -7,33 +7,42 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\search\NoticeArchiveSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('backend', 'Notice Archives');
+$this->title = Yii::t('backend', 'Notices');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="notice-archive-index">
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+<div class="alert alert-info alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h4><i class="icon fa fa-info"></i>Инфо</h4>
+        С помощью этого раздела Вы можете рассылать экстренные сообщения всем контрагентам
+</div>
+
+
+<div class="box">
+  <div class="box-body">
+      <div class="accounting-coupn-form">
 
     <p>
-        <?php echo Html::a(Yii::t('backend', 'Create {modelClass}', [
-    'modelClass' => 'Notice Archive',
-]), ['create'], ['class' => 'btn btn-success']) ?>
+        <a href="send-notice" class="btn btn-primary">Отправить уведомление</a>
     </p>
 
     <?php echo GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        // 'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            // 'id',
             'msg',
             'status',
-            'created_at',
-            'updated_at',
+            'created_at:datetime',
+            // 'updated_at',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
+        </div>
+    </div>
 </div>

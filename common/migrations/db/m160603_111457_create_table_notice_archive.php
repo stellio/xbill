@@ -16,7 +16,7 @@ class m160603_111457_create_table_notice_archive extends Migration
 
         $this->createTable('{{%notice_archive}}', [
             'id' => $this->primaryKey(),
-            'msg' => $this->integer(),
+            'msg' => $this->string(),
             'status' => $this->integer()->defaultValue(0),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),

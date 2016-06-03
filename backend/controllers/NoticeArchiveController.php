@@ -3,17 +3,24 @@
 namespace backend\controllers;
 
 use Yii;
+use backend\models\Contractor;
+use backend\models\NoticeForm;
 use backend\models\NoticeArchive;
 use backend\models\search\NoticeArchiveSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\StringHelper;
+use fgh151\modules\epochta\eclasses\Addressbook;
 
 /**
  * NoticeArchiveController implements the CRUD actions for NoticeArchive model.
  */
 class NoticeArchiveController extends Controller
 {
+    const CAMPAIGN_ID = 640447;
+    const CAMPAIGN_NAME = 'VipKupon';
+
     public function behaviors()
     {
         return [
@@ -32,6 +39,8 @@ class NoticeArchiveController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'minimal';
+
         $searchModel = new NoticeArchiveSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -70,6 +79,90 @@ class NoticeArchiveController extends Controller
             ]);
         }
     }
+
+    public function actionSendNotice() {
+
+        $this->updateRecipientsList();
+
+        $this->layout = 'minimal';
+        $model = new NoticeForm();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $result = $this->sendNoticeImplement($model->msg);
+
+            if ($result) {
+                $this->pushToArchive($model->msg);
+
+                Yii::$app->getSession()->setFlash('alert', [
+                       'body' => 'Сообщение успешно отправленно',
+                       'options' => ['class'=>'alert-success']
+                ]);
+
+                return $this->actionIndex();
+
+            } else {
+                Yii::$app->getSession()->setFlash('alert', [
+                      'body' => 'Сообщение отправить не удалось',
+                      'options' => ['class'=>'alert-danger']
+                ]);
+            }
+        }
+
+        return $this->render('send-notice', [
+            'model' => $model,
+        ]);
+
+    }
+
+    private function updateRecipientsList() {
+
+        $contractors = Contractor::find()->all();
+
+        if (!$contractors)
+            return false;
+
+        $campaignId = NoticeArchiveController::CAMPAIGN_ID;
+        $gate = Yii::$app->getModule('smsGate');
+
+        foreach ($contractors as $c) {
+                $gate->addPhoneToBook(
+                    $campaignId,
+                    $c->phone,
+                    sprintf('%s;%s;%s', $c->firstname, $c->lastname, $c->middlename)
+                );
+        }
+        return true;
+    }
+
+
+    private function sendNoticeImplement($msg) {
+
+        if (!$msg)
+            return false;
+
+        $gate = Yii::$app->getModule('smsGate');
+        $response = $gate->createCampaign(
+            NoticeArchiveController::CAMPAIGN_NAME,
+            StringHelper::truncate($msg, 70, '...', null, true),
+            NoticeArchiveController::CAMPAIGN_ID
+        );
+
+        if (count($response) == 0)
+            return false;
+
+        if (count($response['result']) == 0)
+            return false;
+
+        return true;
+    }
+
+    private function pushToArchive($msg) {
+
+        $notice = new NoticeArchive();
+        $notice->msg = $msg;
+        $notice->save();
+    }
+
 
     /**
      * Updates an existing NoticeArchive model.

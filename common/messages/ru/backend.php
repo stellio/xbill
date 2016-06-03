@@ -199,5 +199,10 @@ return [
     'City ID' => 'Город',
 
     /* Coupon Types */
-    'Coupon Types' => 'Типы купонов'
+    'Coupon Types' => 'Типы купонов',
+
+    /* Notice */
+    'Send the notices' => 'Отправить уведомления',
+    'Notices' => 'Уведомления',
+    'Send' => 'Отправить'
 ];
