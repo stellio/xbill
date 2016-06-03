@@ -40,7 +40,14 @@ $config = [
         ],
         'gridview' =>  [
             'class' => '\kartik\grid\Module'
-        ]
+        ],
+        'smsGate' => [
+           'class' => 'fgh151\modules\epochta\Module',
+           'sms_key_private' => '1f697dc4e3ae0ed736075d090bceace0',
+           'sms_key_public' => '21ab28769832e3a54d2590a97a379e75',
+           'testMode' => true, //Включение тестового режима
+        //    'URL_GAREWAY' => 'URL шлюза, можно не указывать'
+       ],
     ],
     'as globalAccess'=>[
         'class'=>'\common\behaviors\GlobalAccessBehavior',
