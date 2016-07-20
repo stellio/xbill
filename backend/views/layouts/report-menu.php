@@ -35,7 +35,7 @@ use yii\helpers\Url;
             <div class="icon">
                 <i class=""></i>
             </div>
-            <a href="<?php echo Yii::$app->urlManager->createUrl(['/report/summary']) ?>" class="small-box-footer">
+            <a href="<?php echo Yii::$app->urlManager->createUrl(['/report/by-agents-group']) ?>" class="small-box-footer">
                 <?php echo Yii::t('backend', 'Показать') ?> <i class="fa fa-arrow-circle-right"></i>
             </a>
         </div>

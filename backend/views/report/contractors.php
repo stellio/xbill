@@ -110,12 +110,24 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
           $gridColumns = [
-              // ['class' => 'kartik\grid\SerialColumn'],
-              [
-                  'attribute' => 'group',
-                  'pageSummary'=>'Итого',
-              ],
+              // 'id',
+              'lastname',
+              'firstname',
+              'middlename',
+              'phone',
               'name',
+              [
+                  'attribute' => 'city_id',
+                  'value' => function($model) {
+                      return ($model->city) ? $model->city->name : '';
+                  }
+              ],
+              // ['class' => 'kartik\grid\SerialColumn'],
+              // [
+                  // 'attribute' => 'group',
+                  // 'pageSummary'=>'Итого',
+              // ],
+              /*'name',
               'lastname',
               'firstname',
               'middlename',
@@ -123,8 +135,8 @@ $this->params['breadcrumbs'][] = $this->title;
               'contractorCity',
               'address',
               'issued_at:date',
-              [
-                  'attribute' => 'type_id',
+              // [
+                  // 'attribute' => 'type_id',
                   'value' => function($model) {
                       return ($model->type) ? $model->type->name : '';
                   }
@@ -136,20 +148,7 @@ $this->params['breadcrumbs'][] = $this->title;
               [
                   'attribute' => 'number_to',
                   'label' => 'Ном. до',
-              ],
-              [
-                  'attribute' => 'sold_total',
-                  'label' => 'Продано',
-                  'format' => ['decimal', 0],
-                  'pageSummary' => true,
-              ],
-              [
-                  'attribute' => 'trip_total',
-                  'label' => 'Ходок',
-                  'format' => ['decimal', 0],
-                  'pageSummary' => true,
-              ],
-
+              ],*/
           ];
 
 
@@ -157,7 +156,7 @@ $this->params['breadcrumbs'][] = $this->title;
               'dataProvider' => $dataProvider,
               // 'filterModel' => $searchModel,
               'columns' => $gridColumns,
-              'showPageSummary' => true,
+              // 'showPageSummary' => true,
               'panel' => [
                 'heading' => '<h3 class="panel-title">Сводные данные</h3>',
                 'type' => 'info',

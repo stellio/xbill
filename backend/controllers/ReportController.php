@@ -55,8 +55,17 @@ class ReportController extends Controller
 
     public function actionByAgentsGroup()
     {
+        $searchModel = new ContractorSearch();
+        // $searchModel = new CouponPackExtendedSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
         $this->layout = 'minimal';
-        return $this->render('index');
+        return $this->render('contractors', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+        // $this->layout = 'minimal';
+        // return $this->render('index');
     }
 
     public function actionByCouponTypes()

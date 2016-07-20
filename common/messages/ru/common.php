@@ -25,6 +25,7 @@ return [
     'Password' => '',
     'Roles' => '',
     'Token' => '',
+    'FullName' => 'Название',
     '"{attribute}" must be a valid JSON' => '"{attribute}" должен содержать валидный JSON',
     'Active' => 'Активно',
     'Article ID' => 'ID Статьи',

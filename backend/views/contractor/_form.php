@@ -75,6 +75,18 @@ use kartik\select2\Select2;
     <div class="form-group">
         <div class="col-sm-12">
             <div class="pull-right">
+                <?php 
+
+                    $delButton = Html::a(Yii::t('backend', 'Delete'), ['delete', 'id' => $model->id], [
+                        'class' => 'btn btn-danger',
+                        'data' => [
+                            'confirm' => Yii::t('backend', 'Are you sure you want to delete this item?'),
+                            'method' => 'post',
+                        ],
+                    ]);
+
+                    echo ($model->isNewRecord) ? "" : $delButton;
+                ?>
                 <?php echo Html::submitButton($model->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
             </div>
         </div>

@@ -67,7 +67,7 @@ class Contractor extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('backend', 'Updated At'),
             'middlename' => Yii::t('common', 'Middlename'),
             'note' => Yii::t('backend', 'Note'),
-            'name' => Yii::t('common', 'Name'),
+            'name' => Yii::t('common', 'FullName'),
             'address' => Yii::t('backend', 'Address'),
             'city_id' => Yii::t('backend', 'City'),
         ];
