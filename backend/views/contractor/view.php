@@ -96,13 +96,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
    <?php echo $form->field($coupon, 'number_from')->textInput(['maxlength' => true]) ?>
    <?php echo $form->field($coupon, 'number_to')->textInput(['maxlength' => true]) ?>
-   <?php echo $form->field($coupon, 'issued_at')->widget(DatePicker::classname(), [
-       'options' => ['placeholder' => ''],
-       'pluginOptions' => [
-           'autoclose'=>true
-       ]
-   ]); ?>
-
    <?php echo $form->field($coupon, 'issued_at')->widget(DateTimeWidget::className(),
        [
            'phpDatetimeFormat' => 'dd.MM.yyyy',
