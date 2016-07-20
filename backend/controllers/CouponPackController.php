@@ -53,6 +53,7 @@ class CouponPackController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'types' => CouponType::find()->all(),
         ]);
     }
 
@@ -116,6 +117,7 @@ class CouponPackController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'types' => CouponType::find()->all(),
             ]);
         }
     }
