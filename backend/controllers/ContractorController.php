@@ -6,6 +6,7 @@ use Yii;
 use backend\models\City;
 use backend\models\Contractor;
 use backend\models\CouponPack;
+use backend\models\CouponType;
 use backend\models\ContractorGroup;
 use backend\models\search\ContractorSearch;
 use yii\web\Controller;
@@ -61,9 +62,16 @@ class ContractorController extends Controller
             ],
         ]);
 
+        $newCoupon = new CouponPack();
+        $contractor = $this->findModel($id);
+
+        $newCoupon->contractor_id = $contractor->id;
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
-            'couponPack' => $couponPack
+            'model' => $contractor,
+            'couponPack' => $couponPack,
+            'coupon' => $newCoupon,
+            'types' => CouponType::find()->all(),
         ]);
     }
 

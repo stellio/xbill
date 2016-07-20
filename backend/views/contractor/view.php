@@ -3,7 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
-
+use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
 use trntv\yii\datetime\DateTimeWidget;
@@ -49,8 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                   return ($model->type) ? $model->type->name : '';
                               }
                           ],
-                          'created_at:date',
-                          'updated_at:date',
+                          'issued_at:date',
+                        //   'updated_at:date',
                       ],
                   ]); ?>
               </div><!-- /.box-body -->
@@ -66,7 +67,58 @@ $this->params['breadcrumbs'][] = $this->title;
        'id' => 'modal',
        'size' => 'modal-md',
    ]);
-   echo '<div class="modal-content modal-body">Loading...</div>';
+   ?>
+   <?php $form = ActiveForm::begin([
+       'id' => 'coupon-pack-form',
+       'action' => Url::to('/coupon-pack/create-modal'),
+       'enableAjaxValidation' => true,
+       'validationUrl' => Url::to('/coupon-pack/validate'),
+       'layout' => 'horizontal',
+       'fieldConfig' => [
+           'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
+           'horizontalCssClasses' => [
+               'label' => 'col-sm-3',
+               'offset' => 'col-sm-offset-2',
+               'wrapper' => 'col-sm-9',
+               'error' => '',
+               'hint' => '',
+           ],
+       ]
+   ]); ?>
+
+   <?php echo $form->errorSummary($coupon); ?>
+   <?php echo $form->field($coupon, 'contractor_id')->hiddenInput()->label(false); ?>
+   <?php echo $form->field($coupon, 'type_id')->dropDownList(ArrayHelper::map(
+                      $types,
+                      'id',
+                      'name'
+                  ), ['prompt'=>''])?>
+
+   <?php echo $form->field($coupon, 'number_from')->textInput(['maxlength' => true]) ?>
+   <?php echo $form->field($coupon, 'number_to')->textInput(['maxlength' => true]) ?>
+   <?php echo $form->field($coupon, 'issued_at')->widget(DatePicker::classname(), [
+       'options' => ['placeholder' => ''],
+       'pluginOptions' => [
+           'autoclose'=>true
+       ]
+   ]); ?>
+
+   <?php echo $form->field($coupon, 'issued_at')->widget(DateTimeWidget::className(),
+       [
+           'phpDatetimeFormat' => 'dd.MM.yyyy',
+           'momentDatetimeFormat' => 'DD.MM.YYYY'
+   ]) ?>
+
+   <div class="form-group">
+       <div class="col-sm-12">
+           <div class="pull-right">
+               <?php echo Html::submitButton($coupon->isNewRecord ? Yii::t('backend', 'Create') : Yii::t('backend', 'Update'), ['class' => $coupon->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+           </div>
+       </div>
+   </div>
+
+   <?php ActiveForm::end(); ?>
+<?php
    Modal::end();
 ?>
 
@@ -74,10 +126,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php
 $script = <<< JS
     $('.btn-ajax-modal').on('click', function() {
-       $('#modal').modal('show')
-           .find('.modal-body')
-           .load($(this).attr('data-target'));
-           document.getElementById('modalHeader').innerHTML = '<h4>' + $(this).attr('title') + '</h4>';
+         $('#modal').modal('show');
     });
 JS;
 //маркер конца строки, обязательно сразу, без пробелов и табуляции

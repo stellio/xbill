@@ -76,10 +76,9 @@ class CouponPackController extends Controller
         }
     }
 
-    public function actionCreateModal($id)
+    public function actionCreateModal()
     {
         $model = new CouponPack();
-        $model->contractor_id = $id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['/contractor/view', 'id' => $model->contractor_id]);

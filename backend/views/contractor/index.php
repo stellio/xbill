@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
               'attribute' => 'contractor_group_id',
               'value' => function($model) {
-                  return $model->group->name;
+                  return ($model->group) ? $model->group->name : '';
               },
               'filter' => ArrayHelper::map(ContractorGroup::find()->all(), 'id', 'name')
           ],

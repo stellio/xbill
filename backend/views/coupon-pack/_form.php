@@ -46,14 +46,11 @@ use yii\bootstrap\ActiveForm;
 
     <?php //echo $form->field($model, 'used_count')->textInput() ?>
 
-    <?php echo $form->field($model, 'issued_at')->widget(
-        DateTimeWidget::className(),
+    <?php echo $form->field($model, 'issued_at')->widget(DateTimeWidget::className(),
         [
-            'phpDatetimeFormat' => 'yyyy-MM-dd'
-        ]
-    )->hint('В формете: гггг-мм-дд'); ?>
-
-
+            'phpDatetimeFormat' => 'dd.MM.yyyy',
+            'momentDatetimeFormat' => 'DD.MM.YYYY'
+    ]) ?>
 
     <div class="form-group">
         <div class="col-sm-12">
