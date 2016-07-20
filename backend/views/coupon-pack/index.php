@@ -14,12 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?php echo Html::a(Yii::t('backend', 'Add {modelClass}', [
-    'modelClass' => 'Пачку купонов',
-]), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?php echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -28,9 +22,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
             // 'id',
             [
+                'attribute' => 'contractor_name',
+                'value' => function($model) {
+                    return ($model->contractor) ? $model->contractor->name : '';
+                }
+            ],
+            [
                 'attribute' => 'contractor_id',
                 'value' => function($model) {
-                    return $model->contractor->lastname . ' ' . $model->contractor->firstname;
+
+                    return ($model->contractor) ? $model->contractor->lastname . ' ' . $model->contractor->firstname : '';
                 }
             ],
             'number_from',
