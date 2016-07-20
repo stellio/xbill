@@ -158,7 +158,7 @@ $this->params['breadcrumbs'][] = $this->title;
               'columns' => $gridColumns,
               // 'showPageSummary' => true,
               'panel' => [
-                'heading' => '<h3 class="panel-title">Сводные данные</h3>',
+                'heading' => '<h3 class="panel-title">Агенты</h3>',
                 'type' => 'info',
                 'before' => '',
                 'footer' => false,

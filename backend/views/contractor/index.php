@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'firstname',
             'lastname',
             'phone',
+            'name',
             [
               'attribute' => 'contractor_group_id',
               'value' => function($model) {
@@ -46,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '<div style="width: 80px">{view}{update}</div>',
+                'template' => '<div style="width: 110px">{view}{update}{remove}</div>',
                 'buttons' => [
                     'view' => function ($url,$model) {
                         return Html::a(
@@ -58,6 +59,17 @@ $this->params['breadcrumbs'][] = $this->title;
                                 '<span title="Редактировать запись" class="btn btn-primary btn-sm"><i class="fa fa-gear"></i></span>',
                             $url);
                     },
+                    'remove' => function ($url, $model) {
+                        $delButton = Html::a('
+                            <span title="Редактировать запись" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></span>', ['delete', 'id' => $model->id], [
+                            'data' => [
+                                'confirm' => Yii::t('backend', 'Are you sure you want to delete this item?'),
+                                'method' => 'post',
+                            ],
+                        ]);
+
+                        return $delButton;
+                    }
                 ],
             ],
         ],
