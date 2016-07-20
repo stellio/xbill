@@ -36,17 +36,20 @@ class CouponPack extends \yii\db\ActiveRecord
         return 'contractor_coupon_pack';
     }
 
-    // public function behaviors()
-    // {
-        /*return [
+    public function behaviors()
+    {
+        return [
             TimestampBehavior::className(),
-            [
+
+            /*
+             Disable automatical issued date set   
+             [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'issued_at',
                 'value' => new Expression('UNIX_TIMESTAMP(CURDATE())'),
-            ]
-        ];*/
-    // }
+            ]*/
+        ];
+    }
 
     /**
      * @inheritdoc

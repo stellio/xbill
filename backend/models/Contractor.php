@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "contractor".
@@ -34,6 +35,14 @@ class Contractor extends \yii\db\ActiveRecord
     {
         return 'contractor';
     }
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+
 
     /**
      * @inheritdoc
