@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
+use trntv\yii\datetime\DateTimeWidget;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -45,7 +46,14 @@ use yii\bootstrap\ActiveForm;
 
     <?php //echo $form->field($model, 'used_count')->textInput() ?>
 
-    <?php //echo $form->field($model, 'created_at')->textInput() ?>
+    <?php echo $form->field($model, 'issued_at')->widget(
+        DateTimeWidget::className(),
+        [
+            'phpDatetimeFormat' => 'yyyy-MM-dd'
+        ]
+    )->hint('В формете: гггг-мм-дд'); ?>
+
+
 
     <div class="form-group">
         <div class="col-sm-12">

@@ -36,17 +36,17 @@ class CouponPack extends \yii\db\ActiveRecord
         return 'contractor_coupon_pack';
     }
 
-    public function behaviors()
-    {
-        return [
+    // public function behaviors()
+    // {
+        /*return [
             TimestampBehavior::className(),
             [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'issued_at',
                 'value' => new Expression('UNIX_TIMESTAMP(CURDATE())'),
             ]
-        ];
-    }
+        ];*/
+    // }
 
     /**
      * @inheritdoc
@@ -54,7 +54,11 @@ class CouponPack extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['contractor_id', 'created_at', 'updated_at', 'number_from', 'number_to', 'sold_total', 'trip_total', 'status', 'type_id', 'issued_at'], 'integer'],
+            [['contractor_id', 'created_at', 'updated_at', 'number_from', 'number_to', 'sold_total', 'trip_total', 'status', 'type_id'], 'integer'],
+            [['issued_at'], 'default', 'value' => function () {
+                return date(DATE_ISO8601);
+            }],
+            [['issued_at'], 'filter', 'filter' => 'strtotime', 'skipOnEmpty' => true],
             [['contractor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Contractor::className(), 'targetAttribute' => ['contractor_id' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => CouponType::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];

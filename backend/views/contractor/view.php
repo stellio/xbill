@@ -6,6 +6,7 @@ use yii\grid\GridView;
 
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
+use trntv\yii\datetime\DateTimeWidget;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Contractor */
