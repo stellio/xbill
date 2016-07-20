@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
           <?php echo $form->field($model, 'numbers')->textArea([
               'maxlength' => true,
               'rows' => 15
-          ]) ?>
+          ])->hint('введите номера купонов, резделяя их запятой') ?>
 
           <div class="form-group">
               <div class="col-sm-12">
