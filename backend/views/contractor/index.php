@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                   return ($model->group) ? $model->group->name : '';
               },
               'filter' => ArrayHelper::map(ContractorGroup::find()->all(), 'id', 'name')
-          ],
+            ],
             // 'status',
             'created_at:date',
             // 'updated_at',
@@ -51,17 +51,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'buttons' => [
                     'view' => function ($url,$model) {
                         return Html::a(
-                                '<span title="Добавить купон" class="btn btn-warning btn-sm"><i class="fa fa-ticket"></i></span> ',
+                                '<span title="Добавить купон" class="btn btn-warning btn-xs"><i class="fa fa-ticket"></i></span> ',
                             $url);
                     },
                     'update' => function ($url,$model) {
                         return Html::a(
-                                '<span title="Редактировать запись" class="btn btn-primary btn-sm"><i class="fa fa-gear"></i></span>',
+                                '<span title="Редактировать запись" class="btn btn-primary btn-xs"><i class="fa fa-gear"></i></span>',
                             $url);
                     },
                     'remove' => function ($url, $model) {
                         $delButton = Html::a('
-                            <span title="Редактировать запись" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></span>', ['delete', 'id' => $model->id], [
+                            <span title="Редактировать запись" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span>', ['delete', 'id' => $model->id], [
                             'data' => [
                                 'confirm' => Yii::t('backend', 'Are you sure you want to delete this item?'),
                                 'method' => 'post',

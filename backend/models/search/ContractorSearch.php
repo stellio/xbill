@@ -19,7 +19,7 @@ class ContractorSearch extends Contractor
     {
         return [
             [['id', 'contractor_group_id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['firstname', 'lastname', 'middlename', 'phone'], 'safe'],
+            [['firstname', 'lastname', 'middlename', 'phone', 'name'], 'safe'],
         ];
     }
 
@@ -61,7 +61,8 @@ class ContractorSearch extends Contractor
 
         $query->andFilterWhere(['like', 'firstname', $this->firstname])
             ->andFilterWhere(['like', 'lastname', $this->lastname])
-            ->andFilterWhere(['like', 'phone', $this->phone]);
+            ->andFilterWhere(['like', 'phone', $this->phone])
+            ->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }
