@@ -31,6 +31,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'number',
+            [
+                'attribute' => 'Название',
+                'value' => function($model) {
+                    return ($model->number) ? $model->contractorName : '';
+                }
+            ],
+            [
+                'attribute' => 'Фио',
+                'value' => function($model) {
+                    return ($model->number) ? $model->contractorFullName : '';
+                }
+            ],
             'created_at:datetime',
         ],
     ]); ?>

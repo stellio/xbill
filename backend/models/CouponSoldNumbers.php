@@ -4,6 +4,7 @@ namespace backend\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use backend\models\CouponPack;
 
 /**
  * This is the model class for table "coupon_sold_numbers".
@@ -54,4 +55,33 @@ class CouponSoldNumbers extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('common', 'Updated At'),
         ];
     }
+
+    public function getContractorName() {
+
+        $number = $this->number;
+
+        $model = CouponPack::find()->where(
+            'number_from <= :number and :number <= number_to',['number' => $number])->one();
+
+        if ($model) {
+            return ($model->contractor) ? $model->contractor->name : '';
+        }
+
+        return ('(нe задано)');
+    }
+
+    public function getContractorFullName() {
+
+        $number = $this->number;
+
+        $model = CouponPack::find()->where(
+            'number_from <= :number and :number <= number_to',['number' => $number])->one();
+
+        if ($model) {
+            return ($model->contractor) ? $model->contractor->lastname . ' ' . $model->contractor->firstname : '';
+        }
+
+        return ('(нe задано)');
+    }
+
 }
