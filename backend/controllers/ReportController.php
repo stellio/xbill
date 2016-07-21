@@ -48,6 +48,8 @@ class ReportController extends Controller
         $searchModel = new CouponPackExtendedSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+        $dataProvider->pagination->pageSize=1000;
+
         $this->layout = 'minimal';
         return $this->render('summary', [
             'searchModel' => $searchModel,
