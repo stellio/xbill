@@ -31,8 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'number',
-            'created_at:date',
-            'updated_at:date',
+            'created_at:datetime',
+            'updated_at:datetime',
         ],
     ]); ?>
  </div>
