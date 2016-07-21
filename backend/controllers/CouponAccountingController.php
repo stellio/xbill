@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use backend\models\ContractorGroup;
 use backend\models\CouponPack;
+use backend\models\CouponSoldNumbers;
 use backend\models\CouponSold;
 use backend\models\AccountingCouponForm;
 use yii\web\Controller;
@@ -62,21 +63,33 @@ class CouponAccountingController extends Controller
 
     private function accountingCouponNumbers($numbers) {
         $resultReport = [];
+        $dublicateCouponNumbers = [];
         foreach(explode(',', $numbers) as $number) {
 
             $number = trim($number);
             $couponPack = CouponPack::find()->where(
                 'number_from <= :number and :number <= number_to',['number' => $number])->one();
 
+            $isUnique = $this->isUnique($number);
+
             if ($couponPack) {
-                $result = $this->pushCouponToSold($number, $couponPack->id);
-                if (!$result) {
+
+                if ($isUnique) {
+                    $result = $this->pushCouponToSold($number, $couponPack->id);
+                    if (!$result) {
+                        $resultReport[] = sprintf(
+                            '<span class="label label-danger">%s</span> - ошибка, добавить не удалось',
+                            $number
+                        );
+                    }
+                    $this->updateTotals($couponPack->id);
+                } else {
                     $resultReport[] = sprintf(
-                        '<span class="label label-danger">%s</span> - ошибка, добавить не удалось',
+                        '<span class="label label-danger">%s</span> - повтор номера',
                         $number
                     );
                 }
-                $this->updateTotals($couponPack->id);
+
 
             } else {
                 $resultReport[] = sprintf(
@@ -86,6 +99,14 @@ class CouponAccountingController extends Controller
             }
         }
         return $resultReport;
+    }
+
+    private function isUnique($number) {
+
+        $coupon = new CouponSoldNumbers();
+
+        $coupon->number = intval($number);
+        return ($coupon->save()) ? true : false;
     }
 
     private function pushCouponToSold($number, $packId) {
