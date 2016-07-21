@@ -159,7 +159,7 @@ $this->params['breadcrumbs'][] = $this->title;
               // 'showPageSummary' => true,
               'panel' => [
                 'heading' => '<h3 class="panel-title">Агенты</h3>',
-                'type' => 'info',
+                'type' => 'success',
                 'before' => '',
                 'footer' => false,
               ],
