@@ -162,7 +162,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'heading' => '<h3 class="panel-title">Сводные данные</h3>',
                 'type' => 'info',
                 'before' => '',
-                'footer' => false,
+                'footer' => true,
               ],
               // 'export' => true,
               'toolbar' => [
