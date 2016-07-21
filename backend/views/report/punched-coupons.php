@@ -32,7 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             'number',
             'created_at:datetime',
-            'updated_at:datetime',
         ],
     ]); ?>
  </div>
