@@ -36,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'number_from',
             'number_to',
+            'issued_at:date',
             // 'used_count',
             // 'created_at',
             // 'updated_at',
