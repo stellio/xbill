@@ -70,10 +70,10 @@ class CouponAccountingController extends Controller
             $couponPack = CouponPack::find()->where(
                 'number_from <= :number and :number <= number_to',['number' => $number])->one();
 
-            $isUnique = $this->isUnique($number);
 
             if ($couponPack) {
 
+                $isUnique = $this->isUnique($number);
                 if ($isUnique) {
                     $result = $this->pushCouponToSold($number, $couponPack->id);
                     if (!$result) {
