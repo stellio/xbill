@@ -7,6 +7,8 @@ use backend\models\ContractorGroup;
 use backend\models\search\ContractorSearch;
 use backend\models\search\CouponPackSearch;
 use backend\models\search\CouponPackExtendedSearch;
+use backend\models\CouponSoldNumbers;
+use backend\models\search\CouponSoldNumbersSearch;
 use backend\models\CouponPack;
 use backend\models\CouponSold;
 use backend\models\AccountingCouponForm;
@@ -68,10 +70,16 @@ class ReportController extends Controller
         // return $this->render('index');
     }
 
-    public function actionByCouponTypes()
+    public function actionPunchedCoupons()
     {
         $this->layout = 'minimal';
-        return $this->render('index');
+        $searchModel = new CouponSoldNumbersSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('punched-coupons', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     public function actionByDates()

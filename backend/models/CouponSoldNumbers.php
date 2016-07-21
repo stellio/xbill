@@ -50,8 +50,8 @@ class CouponSoldNumbers extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('backend', 'ID'),
             'number' => Yii::t('backend', 'Number'),
-            'created_at' => Yii::t('backend', 'Created At'),
-            'updated_at' => Yii::t('backend', 'Updated At'),
+            'created_at' => Yii::t('common', 'Created At'),
+            'updated_at' => Yii::t('common', 'Updated At'),
         ];
     }
 }

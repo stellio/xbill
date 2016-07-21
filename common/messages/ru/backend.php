@@ -101,6 +101,7 @@ return [
     'No events found' => 'Событий нет',
     'Not Published' => 'Не опубликовано',
     'Number of cores' => 'Кол-во ядер',
+    'Number' => 'Номер',
     'OS' => 'ОС',
     'OS Release' => 'Версия ОС',
     'Off' => 'Выкл',
