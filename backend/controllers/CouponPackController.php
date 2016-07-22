@@ -5,6 +5,8 @@ namespace backend\controllers;
 use Yii;
 use backend\models\CouponPack;
 use backend\models\CouponType;
+use backend\models\CouponSearchForm;
+use yii\data\ActiveDataProvider;
 use backend\models\search\CouponPackSearch;
 use yii\web\Response;
 use yii\web\Controller;
@@ -148,5 +150,39 @@ class CouponPackController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionSearchCoupon() {
+
+        $model = new CouponSearchForm();
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->number) {
+                $number = trim($model->number);
+                // $couponPack = CouponPack::find()->where(
+                    // 'number_from <= :number and :number <= number_to',['number' => $number])->one();
+
+                $dataProvider = new ActiveDataProvider([
+                    'query' => CouponPack::find()->where(
+                        'number_from <= :number and :number <= number_to',['number' => $number]),
+                    'pagination' => [
+                        'pageSize' => 20,
+                    ],
+                ]);
+
+                // get the posts in the current page
+                // $posts = $provider->getModels();
+
+                return $this->render('index', [
+                    'dataProvider' => $dataProvider,
+                    'searchModel' =>  '',
+                ]);
+            }
+        }
+
+        return $this->render('search-coupon', [
+            'model' => $model
+        ]);
+
     }
 }

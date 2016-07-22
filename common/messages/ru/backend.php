@@ -20,6 +20,8 @@ return [
     'Main' => '',
     'Other' => '',
     'This email has already been taken.' => '',
+    'Coupon Number' => 'Номер купона',
+    'Search by coupon number' => 'Поиск по номеру купона',
     'Account' => 'Аккаунт',
     'Add' => 'Добавить',
     'Add {modelClass}' => 'Добавить {modelClass}',
