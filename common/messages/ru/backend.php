@@ -182,7 +182,7 @@ return [
     'Coupon Packs' => 'Пачки купонов',
     'Coupon Accounting' => 'Учет купонов',
     'Report' => 'Отчет',
-    'Notices' => 'Уведомления',
+    'Notices (SMS)' => 'Уведомления (SMS)',
     'Address' => 'Адрес',
     'Note' => 'Примечание',
 

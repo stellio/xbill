@@ -58,7 +58,7 @@ use common\models\TimelineEvent;
              'visible'=>Yii::$app->user->can('administrator')
          ],
          [
-             'label' => Yii::t('backend', 'Notices'),
+             'label' => Yii::t('backend', 'Notices (SMS)'),
              'icon' => '<i class="fa fa-bullhorn"></i>',
              'url' => ['/notice-archive/index'],
              'visible'=>Yii::$app->user->can('administrator')
