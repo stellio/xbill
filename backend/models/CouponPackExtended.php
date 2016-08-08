@@ -132,7 +132,12 @@ class CouponPackExtended extends \yii\db\ActiveRecord
 
     public function getContractorCity() {
         $contractor = Contractor::find()->where(['id' => $this->contractor_id])->one();
-        return ($contractor) ? $contractor->city->name : '';
+        if ($contractor) {
+            if ($contractor->city) {
+                return $contractor->group->name;
+            }
+        }
+        return "";
     }
 
     public function getAddress() {
@@ -142,7 +147,12 @@ class CouponPackExtended extends \yii\db\ActiveRecord
 
     public function getGroup() {
         $contractor = Contractor::find()->where(['id' => $this->contractor_id])->one();
-        return ($contractor) ? $contractor->group->name : '';
+        if ($contractor) {
+            if ($contractor->group) {
+                return $contractor->group->name;
+            }
+        }
+        return "";
     }
 
     public function getContractorGroup() {
