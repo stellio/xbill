@@ -1,8 +1,13 @@
 <?php
 
 use yii\helpers\Html;
-// use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+use kartik\select2\Select2;
 use kartik\grid\GridView;
+
+use backend\models\Contractor;
+use backend\models\CouponPack;
+
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\CouponPackSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -44,15 +49,50 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($model) {
 
                     return ($model->contractor) ? $model->contractor->lastname . ' ' . $model->contractor->firstname : '';
-                }
+                },
+                'filter' => Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'contractor_id',
+                    'data' => ArrayHelper::map(Contractor::find()->asArray()->all(), 'id', 'lastname'),
+                    'options' => [
+                        'placeholder' => 'Поиск'
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ])
+
+
             ],
             [
                 'attribute' => 'number_from',
                 'noWrap' => true,
+                'filter' => Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'number_from',
+                    'data' => ArrayHelper::map(CouponPack::find()->asArray()->all(), 'number_from', 'number_from'),
+                    'options' => [
+                        'placeholder' => 'Поиск'
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ])
             ],
             [
                 'attribute' => 'number_to',
                 'noWrap' => true,
+                'filter' => Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'number_to',
+                    'data' => ArrayHelper::map(CouponPack::find()->asArray()->all(), 'number_to', 'number_to'),
+                    'options' => [
+                        'placeholder' => 'Поиск'
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ])
             ],
             [
                 'attribute' => 'issued_at',
