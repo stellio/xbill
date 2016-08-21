@@ -42,7 +42,7 @@ class CouponPack extends \yii\db\ActiveRecord
             TimestampBehavior::className(),
 
             /*
-             Disable automatical issued date set   
+             Disable automatical issued date set
              [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'issued_at',
@@ -57,14 +57,34 @@ class CouponPack extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['contractor_id', 'created_at', 'updated_at', 'number_from', 'number_to', 'sold_total', 'trip_total', 'status', 'type_id'], 'integer'],
+            [['type_id', 'number_from', 'number_to', 'issued_at'], 'required'],
+            [['contractor_id', 'created_at', 'updated_at',/* 'number_from', 'number_to',*/ 'sold_total', 'trip_total', 'status', 'type_id'], 'integer'],
             [['issued_at'], 'default', 'value' => function () {
                 return date(DATE_ISO8601);
             }],
             [['issued_at'], 'filter', 'filter' => 'strtotime', 'skipOnEmpty' => true],
             [['contractor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Contractor::className(), 'targetAttribute' => ['contractor_id' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => CouponType::className(), 'targetAttribute' => ['type_id' => 'id']],
+            ['number_from', 'validateNumberFrom'],
+            ['number_to', 'validateNumberTo']
         ];
+    }
+
+    public function validateNumberFrom($attribute, $param) {
+
+        $models = CouponPack::find()->where(
+            'number_from <= :number and :number <= number_to',['number' => $this->number_from])->all();
+
+        if ($models)
+            $this->addError($attribute, "Номер уже занят");
+    }
+
+    public function validateNumberTo($attribute, $param) {
+        $models = CouponPack::find()->where(
+            'number_from <= :number and :number <= number_to',['number' => $this->number_to])->all();
+
+        if ($models)
+            $this->addError($attribute, "Номер уже занят");
     }
 
     /**
