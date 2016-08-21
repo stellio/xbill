@@ -1,8 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
-
+// use yii\grid\GridView;
+use kartik\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\CouponPackSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -33,20 +33,32 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'id',
             [
                 'attribute' => 'contractor_name',
+                'noWrap' => true,
                 'value' => function($model) {
                     return ($model->contractor) ? $model->contractor->name : '';
                 }
             ],
             [
                 'attribute' => 'contractor_id',
+                'noWrap' => true,
                 'value' => function($model) {
 
                     return ($model->contractor) ? $model->contractor->lastname . ' ' . $model->contractor->firstname : '';
                 }
             ],
-            'number_from',
-            'number_to',
-            'issued_at:date',
+            [
+                'attribute' => 'number_from',
+                'noWrap' => true,
+            ],
+            [
+                'attribute' => 'number_to',
+                'noWrap' => true,
+            ],
+            [
+                'attribute' => 'issued_at',
+                'format' => 'date',
+                'noWrap' => true,
+            ],
             // 'used_count',
             // 'created_at',
             // 'updated_at',

@@ -113,38 +113,70 @@ $this->params['breadcrumbs'][] = $this->title;
               // ['class' => 'kartik\grid\SerialColumn'],
               [
                   'attribute' => 'group',
+                  'noWrap' => true,
                   'pageSummary'=>'Итого',
               ],
-              'name',
-              'lastname',
-              'firstname',
-              'middlename',
-              'phone',
-              'contractorCity',
-              'address',
-              'issued_at:date',
+              [
+                  'attribute' => 'name',
+                  'noWrap' => true,
+
+              ],
+              [
+                  'attribute' => 'lastname',
+                  'noWrap' => true,
+              ],
+              [
+                  'attribute' => 'firstname',
+                  'noWrap' => true,
+              ],
+              [
+                  'attribute' => 'middlename',
+                  'noWrap' => true,
+              ],
+              [
+                  'attribute' => 'phone',
+                  'noWrap' => true,
+              ],
+              [
+                  'attribute' => 'contractorCity',
+                  'noWrap' => true,
+              ],
+              [
+                  'attribute' => 'address',
+                  'noWrap' => true,
+              ],
+              [
+                  'attribute' => 'issued_at',
+                  'format' => 'date',
+                  'noWrap' => true,
+              ],
               [
                   'attribute' => 'type_id',
+                  'noWrap' => true,
                   'value' => function($model) {
                       return ($model->type) ? $model->type->name : '';
                   }
               ],
               [
                   'attribute' => 'number_from',
+                  'noWrap' => true,
                   'label' => 'Ном. от',
               ],
               [
                   'attribute' => 'number_to',
+                  'noWrap' => true,
                   'label' => 'Ном. до',
               ],
               [
                   'attribute' => 'sold_total',
+                  'noWrap' => true,
                   'label' => 'Продано',
                   'format' => ['decimal', 0],
                   'pageSummary' => true,
               ],
               [
                   'attribute' => 'trip_total',
+                  'noWrap' => true,
                   'label' => 'Ходок',
                   'format' => ['decimal', 0],
                   'pageSummary' => true,
