@@ -129,6 +129,15 @@ class ContractorController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionDeleteCouponPack($id) {
+
+        $model = CouponPack::findOne($id);
+        $contractorId = $model->contractor_id;
+        $model->delete();
+
+        return $this->redirect(['view', 'id' => $contractorId]);
+    }
+
     /**
      * Finds the Contractor model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

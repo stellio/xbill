@@ -52,6 +52,23 @@ $this->params['breadcrumbs'][] = $this->title;
                           ],
                           'issued_at:date',
                         //   'updated_at:date',
+                        [
+                            'class' => 'yii\grid\ActionColumn',
+                            'template' => '<div>{remove}</div>',
+                            'buttons' => [
+                                'remove' => function ($url, $model) {
+                                    $delButton = Html::a('
+                                        <span title="Редактировать запись" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span>', ['delete-coupon-pack', 'id' => $model->id], [
+                                        'data' => [
+                                            'confirm' => Yii::t('backend', 'Are you sure you want to delete this item?'),
+                                            'method' => 'post',
+                                        ],
+                                    ]);
+
+                                    return $delButton;
+                                }
+                            ],
+                        ],
                       ],
                   ]); ?>
               </div><!-- /.box-body -->
