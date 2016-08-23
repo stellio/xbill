@@ -222,7 +222,7 @@ class CouponAccountingController extends Controller
         $pack = CouponPack::find()->where(['id' => $couponPackId])->one();
         $pack->sold_total = $sold_total;
         $pack->trip_total = $trip_total;
-        $pack->save();
+        $pack->update();
     }
 
 }

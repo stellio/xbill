@@ -72,6 +72,9 @@ class CouponPack extends \yii\db\ActiveRecord
 
     public function validateNumberFrom($attribute, $param) {
 
+        if (!$this->isNewRecord)
+            return;
+
         $models = CouponPack::find()->where(
             'number_from <= :number and :number <= number_to',['number' => $this->number_from])->all();
 
@@ -80,6 +83,10 @@ class CouponPack extends \yii\db\ActiveRecord
     }
 
     public function validateNumberTo($attribute, $param) {
+
+        if (!$this->isNewRecord)
+            return;
+
         $models = CouponPack::find()->where(
             'number_from <= :number and :number <= number_to',['number' => $this->number_to])->all();
 
