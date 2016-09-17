@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use backend\modules\archivecoupons\models\ArchiveMode;
 
 /**
  * This is the model class for table "contractor_group".
@@ -19,7 +20,7 @@ class ContractorGroup extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'contractor_group';
+        return ArchiveMode::isOn('contractor_group');
     }
 
     /**

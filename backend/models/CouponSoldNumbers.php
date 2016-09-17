@@ -5,7 +5,7 @@ namespace backend\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use backend\models\CouponPack;
-
+use backend\modules\archivecoupons\models\ArchiveMode;
 /**
  * This is the model class for table "coupon_sold_numbers".
  *
@@ -21,7 +21,7 @@ class CouponSoldNumbers extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'coupon_sold_numbers';
+        return ArchiveMode::isOn('coupon_sold_numbers');
     }
 
     /**

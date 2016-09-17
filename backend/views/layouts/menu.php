@@ -69,6 +69,18 @@ use common\models\TimelineEvent;
              'url' => ['/user/index'],
              'visible' => Yii::$app->user->can('administrator')
          ],
+         [
+              'label' => Yii::t('backend', 'Система'),
+              'url' => '',
+              'icon' => '<i class="fa fa-gear"></i>',
+              'options' => ['class' => 'treeview'],
+              'visible'=>Yii::$app->user->can('administrator'),
+              'items' => [
+                  ['label' => Yii::t('backend', 'Архив'), 'url' =>['/archivecoupons/default/index'], 'icon' => '<i class="fa fa-circle-o"></i>'],
+                  ['label' => Yii::t('backend', 'Сброс'), 'url' =>['/system/reset'], 'icon' => '<i class="fa fa-circle-o"></i>'],
+              ]
+
+          ],
 
      ]
  ]) ?>

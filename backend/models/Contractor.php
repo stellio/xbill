@@ -4,6 +4,7 @@ namespace backend\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use backend\modules\archivecoupons\models\ArchiveMode;
 
 /**
  * This is the model class for table "contractor".
@@ -33,7 +34,7 @@ class Contractor extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'contractor';
+        return ArchiveMode::isOn('contractor');
     }
 
     public function behaviors()

@@ -9,8 +9,14 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
+use backend\modules\archivecoupons\models\ArchiveOptions;
+use backend\modules\archivecoupons\models\ArchiveCoupons;
+use Facebook\WebDriver\Interactions\Touch\WebDriverDoubleTapAction;
 
 $bundle = BackendAsset::register($this);
+
+$isArchiveMode = ArchiveOptions::find(['param' => 'is_archive_mode'])->one();
+
 ?>
 <?php $this->beginContent('@backend/views/layouts/base.php'); ?>
     <div class="wrapper">
@@ -29,6 +35,18 @@ $bundle = BackendAsset::register($this);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
+
+
+                <?php
+                  if (ArchiveOptions::get('is_archive_mode') === 1) {
+
+                    $archive = ArchiveCoupons::find(ArchiveOptions::get('active_archive_id'))->one();
+
+                    echo Html::a(Yii::t('backend', 'Покинуть режим архива (' . $archive->title  . ')' ),Url::to(['/archivecoupons/default/leave']), ['class' => 'btn btn-default navbar-btn']);
+                  }
+                ?>
+
+
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <!-- User Account: style can be found in dropdown.less -->

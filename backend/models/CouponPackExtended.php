@@ -6,6 +6,7 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 use backend\models\Contractor;
+use backend\modules\archivecoupons\models\ArchiveMode;
 
 /**
  * This is the model class for table "contractor_coupon_pack".
@@ -33,7 +34,7 @@ class CouponPackExtended extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'contractor_coupon_pack';
+        return ArchiveMode::isOn('contractor_coupon_pack');
     }
 
     public function behaviors()

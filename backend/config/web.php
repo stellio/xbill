@@ -41,6 +41,11 @@ $config = [
         'gridview' =>  [
             'class' => '\kartik\grid\Module'
         ],
+
+        'archivecoupons' => [
+           'class' => 'backend\modules\archivecoupons\Module',
+        ],
+
         'smsGate' => [
            'class' => 'fgh151\modules\epochta\Module',
            'sms_key_private' => '1f697dc4e3ae0ed736075d090bceace0',

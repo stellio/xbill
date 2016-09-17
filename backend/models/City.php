@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use backend\modules\archivecoupons\models\ArchiveMode;
 
 /**
  * This is the model class for table "city".
@@ -19,7 +20,10 @@ class City extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'city';
+        // check if Archive mode is "On"
+        // if "On" - return table name with archive index (tablename_index)
+        // if "Off" - return current table name
+        return ArchiveMode::isOn('city');
     }
 
     /**

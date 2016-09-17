@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use backend\modules\archivecoupons\models\ArchiveMode;
 
 /**
  * This is the model class for table "coupon_type".
@@ -19,7 +20,7 @@ class CouponType extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'coupon_type';
+        return ArchiveMode::isOn('coupon_type');
     }
 
     /**
