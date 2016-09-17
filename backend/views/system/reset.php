@@ -37,7 +37,7 @@ $this->registerJs($script, yii\web\View::POS_READY);
 <div class="alert alert-danger alert-dismissible">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
     <h4><i class="icon fa fa-exclamation"></i>Внимание</h4>
-        Перед сбросов обязательно сделайте архив текущей системы. <br>
+        Перед сбросом обязательно сделайте архив текущей системы и убидитесь что вы не находитесь в режиме архива<br>
         <?=Html::a('Перейти в раздел архивов', Url::to(['/archivecoupons/default/index']));?>
 </div>
 
