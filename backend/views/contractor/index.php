@@ -31,7 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             // ['class' => 'yii\grid\SerialColumn'],
-
             // 'id',
             [
                 'attribute' => 'firstname',
@@ -112,16 +111,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
-                'template' => '<div style="width: 110px">{view}{update}{remove}</div>',
+                'template' => '<div style="width: 180px">{view}{update}{remove}</div>',
                 'buttons' => [
                     'view' => function ($url,$model) {
                         return Html::a(
-                                '<span title="Добавить купон" class="btn btn-warning btn-xs"><i class="fa fa-ticket"></i></span> ',
+                                '<span title="Добавить купон" class="btn btn-warning btn-xs"><i class="fa fa-ticket"></i> Добавить купоны</span> ',
                             $url);
                     },
                     'update' => function ($url,$model) {
                         return Html::a(
-                                '<span title="Редактировать запись" class="btn btn-primary btn-xs"><i class="fa fa-gear"></i></span>',
+                                '<span title="Редактировать запись" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></span>',
                             $url);
                     },
                     'remove' => function ($url, $model) {

@@ -28,6 +28,12 @@ use common\models\TimelineEvent;
              'visible'=>Yii::$app->user->can('administrator')
          ],
          [
+             'label' => Yii::t('backend', 'Objects'),
+             'icon' => '<i class="fa fa-map-marker"></i>',
+             'url' => ['/object/index'],
+             'visible'=>Yii::$app->user->can('administrator')
+         ],
+         [
              'label' => Yii::t('backend', 'Agents Groups'),
              'icon' => '<i class="fa fa-users"></i>',
              'url' => ['/contractor-group/index'],

@@ -207,5 +207,9 @@ return [
     /* Notice */
     'Send the notices' => 'Отправить уведомления',
     'Notices' => 'Уведомления',
-    'Send' => 'Отправить'
+    'Send' => 'Отправить',
+
+    /* Object */
+    'Object' => 'Объект',
+    'Objects' => 'Объекты'
 ];

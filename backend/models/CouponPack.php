@@ -58,13 +58,14 @@ class CouponPack extends \yii\db\ActiveRecord
     {
         return [
             [['type_id', 'number_from', 'number_to', 'issued_at'], 'required'],
-            [['contractor_id', 'created_at', 'updated_at',/* 'number_from', 'number_to',*/ 'sold_total', 'trip_total', 'status', 'type_id'], 'integer'],
+            [['contractor_id', 'created_at', 'updated_at',/* 'number_from', 'number_to',*/ 'sold_total', 'trip_total', 'status', 'type_id', 'object_id'], 'integer'],
             [['issued_at'], 'default', 'value' => function () {
                 return date(DATE_ISO8601);
             }],
             [['issued_at'], 'filter', 'filter' => 'strtotime', 'skipOnEmpty' => true],
             [['contractor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Contractor::className(), 'targetAttribute' => ['contractor_id' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => CouponType::className(), 'targetAttribute' => ['type_id' => 'id']],
+            [['object_id'], 'exist', 'skipOnError' => true, 'targetClass' => Object::className(), 'targetAttribute' => ['object_id' => 'id']],
             ['number_from', 'validateNumberFrom'],
             ['number_to', 'validateNumberTo']
         ];
@@ -111,6 +112,7 @@ class CouponPack extends \yii\db\ActiveRecord
             'trip_total' => Yii::t('backend', 'Trip Total'),
             'status' => Yii::t('common', 'Status'),
             'type_id' => Yii::t('backend', 'Type ID'),
+            'object_id' => Yii::t('backend', 'Object'),
             'issued_at' => Yii::t('backend', 'Issued At'),
         ];
     }
@@ -129,6 +131,14 @@ class CouponPack extends \yii\db\ActiveRecord
     public function getType()
     {
         return $this->hasOne(CouponType::className(), ['id' => 'type_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getObject()
+    {
+        return $this->hasOne(Object::className(), ['id' => 'object_id']);
     }
 
     public function getLastname() {

@@ -151,6 +151,13 @@ $this->params['breadcrumbs'][] = $this->title;
                   'noWrap' => true,
               ],
               [
+                  'attribute' => 'object_id',
+                  'noWrap' => true,
+                  'value' => function($model) {
+                      return ($model->object) ? $model->object->name : '';
+                  }
+              ],
+              [
                   'attribute' => 'type_id',
                   'noWrap' => true,
                   'value' => function($model) {

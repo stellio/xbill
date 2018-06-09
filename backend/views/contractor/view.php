@@ -45,6 +45,12 @@ $this->params['breadcrumbs'][] = $this->title;
                           'sold_total',
                           'trip_total',
                           [
+                              'attribute' => 'object_id',
+                              'value' => function($model) {
+                                  return ($model->object) ? $model->object->name : '';
+                              }
+                          ],
+                          [
                               'attribute' => 'type_id',
                               'value' => function($model) {
                                   return ($model->type) ? $model->type->name : '';
@@ -105,6 +111,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
    <?php echo $form->errorSummary($coupon); ?>
    <?php echo $form->field($coupon, 'contractor_id')->hiddenInput()->label(false); ?>
+
+   <?php echo $form->field($coupon, 'object_id')->dropDownList(ArrayHelper::map(
+                      $objects,
+                      'id',
+                      'name'
+                  ), ['prompt'=>''])?>
+
    <?php echo $form->field($coupon, 'type_id')->dropDownList(ArrayHelper::map(
                       $types,
                       'id',

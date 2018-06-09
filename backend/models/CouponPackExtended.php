@@ -55,7 +55,7 @@ class CouponPackExtended extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['contractor_id', 'created_at', 'updated_at', 'number_from', 'number_to', 'sold_total', 'trip_total', 'status', 'type_id', 'issued_at'], 'integer'],
+            [['contractor_id', 'created_at', 'updated_at', 'number_from', 'number_to', 'sold_total', 'trip_total', 'status', 'object_id', 'type_id', 'issued_at'], 'integer'],
             [['contractor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Contractor::className(), 'targetAttribute' => ['contractor_id' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => CouponType::className(), 'targetAttribute' => ['type_id' => 'id']],
         ];
@@ -77,6 +77,7 @@ class CouponPackExtended extends \yii\db\ActiveRecord
             'trip_total' => Yii::t('backend', 'Trip Total'),
             'status' => Yii::t('backend', 'Status'),
             'type_id' => Yii::t('backend', 'Тип купона'),
+            'object_id' => Yii::t('backend', 'Object'),
             'issued_at' => Yii::t('backend', 'Issued At'),
             'group' => Yii::t('backend', 'Group'),
             'name' => Yii::t('common', 'Name'),
@@ -101,6 +102,10 @@ class CouponPackExtended extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getObject() {
+        return $this->hasOne(Object::className(), ['id' => 'object_id']);
+    }
+
     public function getType()
     {
         return $this->hasOne(CouponType::className(), ['id' => 'type_id']);

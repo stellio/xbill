@@ -26,7 +26,7 @@ class CouponPackExtendedSearch extends CouponPackExtended
     public function rules()
     {
         return [
-            [['id', 'contractor_id', 'created_at', 'updated_at', 'number_from', 'number_to', 'sold_total', 'trip_total', 'status', 'type_id', 'issued_at'], 'integer'],
+            [['id', 'contractor_id', 'created_at', 'updated_at', 'number_from', 'number_to', 'sold_total', 'trip_total', 'status', 'type_id', 'object_id', 'issued_at'], 'integer'],
             [['group', 'name', 'lastname', 'firstname', 'middlename', 'phone', 'city', 'address'], 'safe'],
         ];
     }
@@ -113,6 +113,7 @@ class CouponPackExtendedSearch extends CouponPackExtended
             'trip_total' => $this->trip_total,
             'status' => $this->status,
             'type_id' => $this->type_id,
+            'object_id' => $this->object_id,
             'issued_at' => $this->issued_at,
         ])
         ->andFilterWhere(['like', 'contractor_group.name', $this->group])
