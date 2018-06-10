@@ -57,7 +57,7 @@ class CouponPack extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type_id', 'number_from', 'number_to', 'issued_at'], 'required'],
+            [['object_id', 'type_id', 'number_from', 'number_to', 'issued_at'], 'required'],
             [['contractor_id', 'created_at', 'updated_at',/* 'number_from', 'number_to',*/ 'sold_total', 'trip_total', 'status', 'type_id', 'object_id'], 'integer'],
             [['issued_at'], 'default', 'value' => function () {
                 return date(DATE_ISO8601);

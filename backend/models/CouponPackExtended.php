@@ -58,6 +58,7 @@ class CouponPackExtended extends \yii\db\ActiveRecord
             [['contractor_id', 'created_at', 'updated_at', 'number_from', 'number_to', 'sold_total', 'trip_total', 'status', 'object_id', 'type_id', 'issued_at'], 'integer'],
             [['contractor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Contractor::className(), 'targetAttribute' => ['contractor_id' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => CouponType::className(), 'targetAttribute' => ['type_id' => 'id']],
+            [['object_id'], 'exist', 'skipOnError' => true, 'targetClass' => Object::className(), 'targetAttribute' => ['object_id' => 'id']],
         ];
     }
 
