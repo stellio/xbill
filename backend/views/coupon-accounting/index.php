@@ -13,3 +13,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <a href="/coupon-accounting/enter" class="btn btn-success btn-lg">Ввести номера купонов</a>
 <a href="/coupon-accounting/enter-group" class="btn btn-success btn-lg">Ввести номера купонов (группа)</a>
+<p>
+<br>
+<a href="/coupon-accounting/contractor-number" class="btn btn-success btn-lg">По номеру агента</a>
+</p>
+
+

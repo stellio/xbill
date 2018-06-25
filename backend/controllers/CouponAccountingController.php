@@ -8,6 +8,7 @@ use backend\models\CouponPack;
 use backend\models\CouponSoldNumbers;
 use backend\models\CouponSold;
 use backend\models\AccountingCouponForm;
+use backend\models\ContractorNumberForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -148,6 +149,32 @@ class CouponAccountingController extends Controller
         return $this->render('accounting-coupon-group', [
             'model' => $model,
             'report' => $report,
+        ]);
+    }
+
+    public function actionContractorNumber() {
+
+        $this->layout = 'minimal';
+        $model = new ContractorNumberForm();
+        $report = array();
+        $couponNumbers = [
+            ['id' => '0', 'coupon_contractor_uniqe_number' => 'нет']
+        ];
+
+        if ($model->load(Yii::$app->request->post()) && false) {
+            // $report = $this->accountingCouponNumbers($model->numbers);
+            // show "All Good" erros if empty
+            if (count($report) < 1) {
+                Yii::$app->getSession()->setFlash('alert', [
+                       'body' => 'Данные успешно добавленны',
+                       'options' => ['class'=>'alert-success']
+               ]);
+            }
+        }
+        return $this->render('accounting-coupon-contractor-number', [
+            'model' => $model,
+            'report' => $report,
+            'couponNumbers' => $couponNumbers
         ]);
     }
 
