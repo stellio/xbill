@@ -55,7 +55,7 @@ class CouponPackExtended extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['contractor_id', 'created_at', 'updated_at', 'number_from', 'number_to', 'sold_total', 'trip_total', 'status', 'object_id', 'type_id', 'issued_at'], 'integer'],
+            [['contractor_id', 'created_at', 'updated_at', 'number_from', 'number_to', 'sold_total', 'trip_total', 'status', 'object_id', 'coupon_contractor_uniqe_number', 'type_id', 'issued_at'], 'integer'],
             [['contractor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Contractor::className(), 'targetAttribute' => ['contractor_id' => 'id']],
             [['type_id'], 'exist', 'skipOnError' => true, 'targetClass' => CouponType::className(), 'targetAttribute' => ['type_id' => 'id']],
             [['object_id'], 'exist', 'skipOnError' => true, 'targetClass' => Object::className(), 'targetAttribute' => ['object_id' => 'id']],
@@ -89,6 +89,7 @@ class CouponPackExtended extends \yii\db\ActiveRecord
             'contractorCity' => Yii::t('common', 'City'),
             'address' => Yii::t('common', 'Address'),
             'issued_at' => Yii::t('backend', 'Issued At'),
+            'coupon_contractor_uniqe_number' => 'Присваиваемый номер агенту',
         ];
     }
 

@@ -57,6 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                               }
                           ],
                           'issued_at:date',
+                          'coupon_contractor_uniqe_number',
                         //   'updated_at:date',
                         [
                             'class' => 'yii\grid\ActionColumn',
@@ -123,6 +124,8 @@ $this->params['breadcrumbs'][] = $this->title;
                       'id',
                       'name'
                   ), ['prompt'=>''])?>
+
+   <?php echo $form->field($coupon, 'coupon_contractor_uniqe_number')->textInput(['maxlength' => true]) ?>
 
    <?php echo $form->field($coupon, 'number_from')->textInput(['maxlength' => true]) ?>
    <?php echo $form->field($coupon, 'number_to')->textInput(['maxlength' => true]) ?>

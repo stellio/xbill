@@ -58,7 +58,7 @@ class CouponPack extends \yii\db\ActiveRecord
     {
         return [
             [['object_id', 'type_id', 'number_from', 'number_to', 'issued_at'], 'required'],
-            [['contractor_id', 'created_at', 'updated_at',/* 'number_from', 'number_to',*/ 'sold_total', 'trip_total', 'status', 'type_id', 'object_id'], 'integer'],
+            [['contractor_id', 'created_at', 'updated_at',/* 'number_from', 'number_to',*/ 'sold_total', 'trip_total', 'status', 'type_id', 'object_id', 'coupon_contractor_uniqe_number'], 'integer'],
             [['issued_at'], 'default', 'value' => function () {
                 return date(DATE_ISO8601);
             }],
@@ -114,6 +114,7 @@ class CouponPack extends \yii\db\ActiveRecord
             'type_id' => Yii::t('backend', 'Type ID'),
             'object_id' => Yii::t('backend', 'Object'),
             'issued_at' => Yii::t('backend', 'Issued At'),
+            'coupon_contractor_uniqe_number' => 'Присваиваемый номер агенту',
         ];
     }
 
