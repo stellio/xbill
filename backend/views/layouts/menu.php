@@ -12,16 +12,6 @@ use common\models\TimelineEvent;
      'activateParents' => true,
      'items' => [
          [
-            'label'=> 'Учет купонов',
-            'options' => ['class' => 'header']
-         ],
-         [
-             'label' => Yii::t('backend', 'Coupon Accounting'),
-             'icon' => '<i class="fa fa-file-text"></i>',
-             'url' => ['/coupon-accounting/index'],
-             'visible'=> (Yii::$app->user->can('administrator') || Yii::$app->user->can('paymaster')),
-         ],
-         [
              'label'=>Yii::t('backend', 'Главное меню'),
              'options' => ['class' => 'header']
          ],
@@ -30,6 +20,22 @@ use common\models\TimelineEvent;
              'icon' => '<i class="fa fa-user-secret"></i>',
              'url' => ['/contractor/index'],
              'visible'=>Yii::$app->user->can('administrator')
+         ],
+         [
+             'label' => Yii::t('backend', 'Coupon Packs'),
+             'icon' => '<i class="fa fa-ticket"></i>',
+             'url' => ['/coupon-pack/index'],
+             'visible'=>Yii::$app->user->can('administrator')
+         ],
+         [
+             'label' => Yii::t('backend', 'Coupon Accounting'),
+             'icon' => '<i class="fa fa-file-text"></i>',
+             'url' => ['/coupon-accounting/index'],
+             'visible'=> (Yii::$app->user->can('administrator') || Yii::$app->user->can('paymaster')),
+         ], 
+         [
+            'label'=> 'Параметры',
+            'options' => ['class' => 'header']
          ],
          [
              'label' => Yii::t('backend', 'Cities'),
@@ -50,16 +56,14 @@ use common\models\TimelineEvent;
              'visible'=>Yii::$app->user->can('administrator')
          ],
          [
-             'label' => Yii::t('backend', 'Coupon Packs'),
-             'icon' => '<i class="fa fa-ticket"></i>',
-             'url' => ['/coupon-pack/index'],
-             'visible'=>Yii::$app->user->can('administrator')
-         ],
-         [
              'label' => Yii::t('backend', 'Coupon Types'),
              'icon' => '<i class="fa fa-clone"></i>',
              'url' => ['/coupon-type/index'],
              'visible'=>Yii::$app->user->can('administrator'),
+         ],
+         [
+             'label'=>Yii::t('backend', 'Информация'),
+             'options' => ['class' => 'header']
          ],
          [
              'label' => Yii::t('backend', 'Отчеты'),
