@@ -51,7 +51,7 @@ class Contractor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['lastname', 'phone'], 'required'],
+            [['lastname'], 'required'],
             [['contractor_group_id', 'status', 'created_at', 'updated_at', 'city_id'], 'integer'],
             [['firstname', 'lastname'], 'string', 'max' => 32],
             [['phone'], 'string', 'max' => 40],
