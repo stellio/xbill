@@ -65,6 +65,21 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ],
             [
+                'attribute' => 'coupon_contractor_uniqe_number',
+                'noWrap' => true,
+                'filter' => Select2::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'coupon_contractor_uniqe_number',
+                    'data' => ArrayHelper::map(CouponPack::find()->asArray()->all(), 'coupon_contractor_uniqe_number', 'coupon_contractor_uniqe_number'),
+                    'options' => [
+                        'placeholder' => 'Поиск'
+                    ],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ])
+            ],
+            [
                 'attribute' => 'number_from',
                 'noWrap' => true,
                 'filter' => Select2::widget([
