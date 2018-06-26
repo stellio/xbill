@@ -157,12 +157,11 @@ class CouponAccountingController extends Controller
         $this->layout = 'minimal';
         $model = new ContractorNumberForm();
         $report = array();
-        $couponNumbers = [
-            ['id' => '0', 'coupon_contractor_uniqe_number' => 'нет']
-        ];
 
-        if ($model->load(Yii::$app->request->post()) && false) {
-            // $report = $this->accountingCouponNumbers($model->numbers);
+        $couponNumbers = CouponPack::find()->where(['not', ['coupon_contractor_uniqe_number' => null]])->all();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $report = $this->accountingContractorNumber($model);
             // show "All Good" erros if empty
             if (count($report) < 1) {
                 Yii::$app->getSession()->setFlash('alert', [
@@ -176,6 +175,45 @@ class CouponAccountingController extends Controller
             'report' => $report,
             'couponNumbers' => $couponNumbers
         ]);
+    }
+
+    private function accountingContractorNumber(ContractorNumberForm $model) {
+
+        $report = [];
+
+        // $model->coupon_contractor_uniqe_number;
+        $couponPack = CouponPack::find()->where(['id' => $model->coupon_contractor_uniqe_number])->one();
+
+        if ($couponPack) {
+            $couponPack->sold_total = $couponPack->sold_total + $model->number_of_sold;
+            if ($couponPack->save()) {
+
+                $coupon = CouponSold::find()->where(['coupon_pack_id' => $couponPack->id])->one();
+                // if coupon(s) exist at present day, increment sold number
+                if ($coupon) {
+                    $coupon->sold_count = $couponPack->sold_total;
+                    $coupon->save();
+                // if not, create new
+                } else {
+                    $coupon = new CouponSold();
+                    $coupon->coupon_pack_id = $couponPack->id;
+                    $coupon->sold_count = $couponPack->sold_total;
+                    $coupon->save();
+                }
+            } else {
+                $report[] = sprintf(
+                    '<span class="label label-danger">%s</span> - ошибка, сохранить не удалось',
+                    $couponPack->coupon_contractor_uniqe_number
+                );    
+            }
+        } else {
+            $report[] = sprintf(
+                '<span class="label label-danger">%s</span> - ошибка, добавить не удалось',
+                $couponPack->coupon_contractor_uniqe_number
+            );    
+        }
+        
+        return $report;
     }
 
     private function accountingCouponGroupNumbers($numbers) {
